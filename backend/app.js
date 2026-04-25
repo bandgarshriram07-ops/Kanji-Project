@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const Kanji = require('./models/Kanji');
+const Hiragana = require("./models/hiragana")
 const cors = require('cors');
 
 app.use(cors());
@@ -12,30 +13,33 @@ mongoose.connect('mongodb://localhost:27017/kanji-app')
     .catch(err => console.log(err));
 
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
+app.get('/hiragana',async (req, res) => {
+    try{
+        const hiragana = await Hiragana.find({});
+        res.json(hiragana);
+    }catch(err) {
+        res.status(500).json({ message: err.message });
+    }
 });
 
 app.get('/api/kanji', async (req, res) => {
     try {
-        const kanji = await Kanji.find();
+        const {jlpt} = req.query;
+        let query = {};
+        if (jlpt) {
+            query.jlpt = jlpt;
+        }
+        const kanji = await Kanji.find(query);
         res.json(kanji);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 });
 
-app.get("/api/kanji", async (req, res) => {
-    const query = req.query.q;
+app.get("/api/kanji/:id", async (req, res) => {
+    const {id} = req.params;
     try {
-        const kanji = await Kanji.find({
-            $or: [
-                { character: { $regex: query, $options: "i" } },
-                { meaning: { $regex: query, $options: "i" } },
-                { onyomi: { $regex: query, $options: "i" } },
-                { kunyomi: { $regex: query, $options: "i" } }
-            ]
-        });
+        const kanji = await Kanji.findById(id);
         res.json(kanji);
     } catch (err) {
         res.status(500).json({ message: err.message });

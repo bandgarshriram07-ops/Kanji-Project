@@ -1,40 +1,51 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useSearchParams, Link } from "react-router-dom";
 
 const Kanji = () => {
+  const [searchParams] = useSearchParams();
+  const level = searchParams.get("jlpt");
   let [kanji, setKanji] = useState([]);
 
-  useEffect(() => {
-    // Simulate an API call to fetch kanji
-    const fetchKanji = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/kanji");
-        const data = await response.json();
-        setKanji(data);
-      } catch (error) {
-        console.error("Error fetching kanji:", error);
+  let fetchApi = async (Level ) => {
+      let URL = "http://localhost:3000/api/kanji";
+      if (Level) {
+         URL = `http://localhost:3000/api/kanji?jlpt=${Level}`;
       }
+  
+      fetch(URL)
+        .then((res) => res.json())
+        .then((data) => setKanji(data));
     };
-
-    fetchKanji();
-  }, []);
+  
+    useEffect(() => {
+      fetchApi(level ?? "all");
+    }, [level]);
 
   return (
     <div>
-      <h2 className="text-red-500 text-lg font-bold text-center">Kanji</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      <h2 className="text-indigo-700 text-3xl font-bold text-center my-8">
+        Kanji
+      </h2>
+      <div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 
+      p-5 w-[80%] mx-auto bg-sky-600 rounded-lg"
+      >
         {kanji.map((k) => (
-          <div className="border border-indigo-600 p-4 m-4 text-center" key={k._id}>
-            <h3 className="text-2xl font-bold">{k.character}</h3>
-            <p>{k.meaning}</p>
-            <p>{k.onyomi}</p>
-            <p>{k.kunyomi}</p>
-            <p>{k.jlpt}</p>
-            <p>{k.exampleWords[0].word}</p>
-            <p>{k.exampleWords[0].reading}</p>
-            <p>{k.exampleWords[0].meaning}</p>
-          </div>
-        ))}
+          <Link to={`/Kanji/${k._id}`} key={k._id}>
+            <div
+              className="border border-indigo-600 p-4 m-4 text-center 
+          h-[150px] flex flex-col justify-content items-center bg-sky-100 text-gray-800"
+            >
+              <h3 className="text-3xl font-bold text-indigo-700">
+                {k.character}
+              </h3>
+              <p className="mt-2 text-sm text-gray-600">
+                JLPT Level : {k.jlpt}N
+              </p>
+            </div>
+          </Link>
+        ))}s
       </div>
     </div>
   );
