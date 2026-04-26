@@ -19,7 +19,7 @@ const Kanji = () => {
     };
   
     useEffect(() => {
-      fetchApi(level ?? "all");
+      fetchApi(level );
     }, [level]);
 
   return (
@@ -32,7 +32,7 @@ const Kanji = () => {
       p-5 w-[80%] mx-auto bg-sky-600 rounded-lg"
       >
         {kanji.map((k) => (
-          <Link to={`/Kanji/${k._id}`} key={k._id}>
+          <Link to={`/kanji/${k._id}`} key={k._id}>
             <div
               className="border border-indigo-600 p-4 m-4 text-center 
           h-[150px] flex flex-col justify-content items-center bg-sky-100 text-gray-800"

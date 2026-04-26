@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
+
 const Home = () => {
   const [jlptLevels, setJlptLevels] = useState([]);
 
   console.log(jlptLevels);
+
   return (
     <div className="bg-[#f2d492] min-h-screen ">
       <div className="flex justify-center align-center flex-col items-center gap-2 m-auto ">
@@ -14,6 +16,14 @@ const Home = () => {
         <h3 className="text-xl font-semibold">日本語の漢字を学ぼう</h3>
       </div>
       <div className="flex flex-col items-center justify-center mt-10 gap-4">
+      <Link
+          className="bg-gray-500 text-white  p-2 rounded text-center shadow-md 
+          hover:bg-red-600 transition duration-300 hover:shadow-lg hover:text-lg sm:mx-auto"
+          to={"/kanji"}
+        >
+          All Levels
+          <ArrowForwardIosIcon className="ml-55" />
+        </Link>
         <Link
           className="bg-red-500 text-white  p-2 rounded text-center shadow-md 
           hover:bg-red-600 transition duration-300 hover:shadow-lg hover:text-lg sm:mx-auto"
@@ -54,14 +64,6 @@ const Home = () => {
         >
           JLPT N5
           <ArrowForwardIosIcon className="ml-55" />
-        </Link>
-      </div>
-      <div className="flex justify-content  items-center">
-        <Link
-          to={"/hiragana"}
-          className="bg-[#dae3e5] border border-indigo-400 p-[0.7rem]  rounded-xl "
-        >
-          Hiragana
         </Link>
       </div>
     </div>

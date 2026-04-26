@@ -7,6 +7,7 @@ const cors = require('cors');
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect('mongodb://localhost:27017/kanji-app')
     .then(() => console.log('MongoDB connected'))
@@ -46,6 +47,26 @@ app.get("/api/kanji/:id", async (req, res) => {
     }
 });
 
+app.post('/api/kanji', async (req, res) => {
+    try{
+        const {character, meaning, onyomi, kunyomi, jlpt, exampleWords} = req.body;
+    const kanji = new Kanji({character, meaning, onyomi, kunyomi, jlpt, exampleWords});
+    await kanji.save();
+    res.json(kanji);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+app.delete('/api/kanji/:id', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const kanji = await Kanji.findByIdAndDelete(id);
+        res.json(kanji);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

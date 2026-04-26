@@ -1,17 +1,21 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Kanji from "./pages/Kanji";
-import KanjiDetails from "./pages/KanjiDetails";
-import Home from "./pages/Home";
-import Hiragana from "./pages/Hiragana";
+import Kanji from "./components/Kanji";
+import KanjiDetails from "./components/KanjiDetails";
+import Home from "./components/Home";
+import Hiragana from "./components/Hiragana";
+import Navbar from "./pages/Navbar";
+import AddKanji from "./components/Addkanji.jsx";
 
 function App() {
   return (
     <BrowserRouter >
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Kanji" element={<Kanji />} />
-        <Route path="/Kanji/:id" element={<KanjiDetails />} />
+        <Route path="/kanji" element={<Kanji />} />
+        <Route path="/kanji/:id" element={<KanjiDetails />} />
         <Route path="/hiragana" element={<Hiragana/>}/>
+        <Route path="/addkanji" element={<AddKanji/>}/>
       </Routes>
     </BrowserRouter>
   );
