@@ -68,6 +68,17 @@ app.delete('/api/kanji/:id', async (req, res) => {
     }
 });
 
+app.patch('/api/kanji/:id', async (req, res) => {
+    const {id} = req.params;
+    try {
+        const {character, meaning, onyomi, kunyomi, jlpt, exampleWords} = req.body;
+        const kanji = await Kanji.findByIdAndUpdate(id, {character, meaning, onyomi, kunyomi, jlpt, exampleWords});
+        res.json(kanji);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
 });

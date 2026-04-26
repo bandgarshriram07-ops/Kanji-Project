@@ -14,8 +14,9 @@ const DeleteButton = () => {
     navigate("/kanji");
   }
   return (
-    <div>
-      <button onClick={handelDelete}>Delete Kanji</button>
+    <div className="flex justify-center items-center mt-4">
+      <button onClick={handelDelete} className="bg-red-500 text-white p-2 
+      rounded-md hover:bg-red-600 transition-all duration-300 " >Delete</button>  
     </div>
   )
 }

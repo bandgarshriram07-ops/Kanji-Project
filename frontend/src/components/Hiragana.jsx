@@ -15,7 +15,8 @@ const Hiragana = () => {
   }, []);
   return (
    <div className="container mx-auto min-h-screen bg-[#f2d492] " >
-    <h1 className="text-indigo-700 text-3xl font-bold text-center my-8">Hiragana</h1>
+    <h1 className="text-indigo-700 text-3xl font-bold
+     text-center m-auto">Hiragana</h1>
      <div  className="grid grid-cols-5 ">
       {hiragana.map((Cha) => {
         return (

@@ -1,8 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import DeleteButton from "./DeleteButton";
-
 
 const KanjiDetails = () => {
   const { id } = useParams();
@@ -22,13 +21,14 @@ const KanjiDetails = () => {
     fetchKanjiDetails();
   }, [id]);
   return (
-    <div>
+    <div className=" bg-[#f2d492] min-h-screen  w-screen  flex flex-col items-center ">
       <h1>Kanji Details</h1>
-      <div>
+      <div className="flex flex-col items-center justify-center gap-4
+       p-4 border-2 border-black rounded-md w-1/3 h-1/3 bg-[#eec170]">
         {kanji && (
           <>
-            <h2>{kanji.character}</h2>
-            <p>JLPT Level: {kanji.jlpt}N</p>
+            <h2 className="text-3xl font-bold">{kanji.character}</h2>
+            <p >JLPT Level: {kanji.jlpt}N</p>
             {/* Add more details as needed */}
             <p>Kanji meaning: {kanji.meaning}</p>
             <p>Onyomi: {kanji.onyomi}</p>
@@ -44,7 +44,10 @@ const KanjiDetails = () => {
                     </li>
                   ))}
                 </ul>
-                <DeleteButton/>
+                <DeleteButton />
+                <Link to={`/kanji/${kanji._id}/edit`}>
+                  <button>Edit Kanji</button>
+                </Link>
               </div>
             )}
           </>
