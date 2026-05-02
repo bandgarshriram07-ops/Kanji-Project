@@ -41,9 +41,13 @@ export const deleteKanji = async (req,res) => {
     const {id} = req.params;
     try {
         const kanji = await Kanji.findByIdAndDelete(id);
-        if(kanji.createdBy.toString() !== req.user._id.toString()){
-            return res.status(401).json({message: "Unauthorized"});
+        if(!kanji){
+            return res.status(404).json({message: "Kanji not found"});
         }
+        if(kanji.createdBy.toString() !== req.user._id.toString()){
+            return res.status(403).json({message: "Unauthorized"});
+        }
+        await Kanji.findByIdAndDelete(id);
         res.json(kanji);
     } catch (err) {
         res.status(500).json({ message: err.message });
