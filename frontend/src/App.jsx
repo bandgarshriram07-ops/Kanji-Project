@@ -1,11 +1,14 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Kanji from "./components/Kanji";
 import KanjiDetails from "./components/KanjiDetails";
-import EditKanji from "./components/EditKanji";
+import EditKanji from "./components/EditKanij";
 import Home from "./components/Home";
 import Hiragana from "./components/Hiragana";
 import Navbar from "./pages/Navbar";
-import AddKanji from "./components/Addkanji.jsx";
+import AddKanji from "./components/AddKanji.jsx";
+import Register from "./components/Register.jsx";
+import Login from "./components/Login.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
   return (
@@ -14,10 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kanji" element={<Kanji />} />
-        <Route path="/kanji/:id" element={<KanjiDetails />} />
-        <Route path="/kanji/:id/edit" element={<EditKanji />} />
+        <Route path="/kanji/:id" element={<ProtectedRoute><KanjiDetails /></ProtectedRoute>} />
+        <Route path="/kanji/:id/edit" element={<ProtectedRoute><EditKanji /></ProtectedRoute>} />
+        <Route path="/addkanji" element={<ProtectedRoute><AddKanji /></ProtectedRoute>} />
         <Route path="/hiragana" element={<Hiragana/>}/>
-        <Route path="/addkanji" element={<AddKanji/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Routes>
     </BrowserRouter>
   );

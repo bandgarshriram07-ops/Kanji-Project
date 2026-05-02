@@ -56,4 +56,4 @@ let hiragana = [
   { "character": "ん", "romaji": "n", "pronunciation": "n" }
 ];
 
-module.exports = {data:hiragana};
+export default hiragana;

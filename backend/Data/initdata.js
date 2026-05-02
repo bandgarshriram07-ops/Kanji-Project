@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const Kanji = require('../models/Kanji');
-const  KanjiData  = require("./data.js");
-const hiraganaDta = require("./hiraganaData.js")
-const Hiragana = require("../models/hiragana.js")
+import mongoose from 'mongoose';
+import Kanji from '../models/Kanji.js';
+import KanjiData from "./data.js";
+import hiraganaData from "./hiraganaData.js"
+import Hiragana from "../models/hiragana.js"
 
 
 mongoose.connect('mongodb://localhost:27017/kanji-app')
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/kanji-app')
 async function seedKanji() {
     try {
         await Kanji.deleteMany({});
-        await Kanji.insertMany(KanjiData.data);
+        await Kanji.insertMany(KanjiData);
         console.log('Kanji data seeded successfully');
     }   catch (err) { 
         console.log('Error seeding kanji data:', err.message);
@@ -26,7 +26,7 @@ async function seedKanji() {
 async function seedHiragana(){
     try{
         await Hiragana.deleteMany({});
-        await Hiragana.insertMany(hiraganaDta.data);
+        await Hiragana.insertMany(hiraganaData);
         console.log("Successfully Insert Hiragana data")
     }catch(err)
     {

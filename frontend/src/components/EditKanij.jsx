@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { fetchKanjiById ,updateKanji} from "../services/kanjiService";
 
-function KanjiEdit() {
+function EditKanji() {
   const { id } = useParams();
   const [editId, setEditId] = useState(id);
 
@@ -23,9 +24,7 @@ function KanjiEdit() {
 
   useEffect(() => {
     const fetchKanji = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/api/kanji/${id}`);
-        const kanji = await response.json();
+        const kanji = await fetchKanjiById(id);
         setEditId(kanji._id || id);
         setFormData({
           character: kanji.character || "",
@@ -44,9 +43,6 @@ function KanjiEdit() {
                   }
                 ]
         });
-      } catch (error) {
-        console.log(error);
-      }
     };
 
     if (id) {
@@ -74,48 +70,11 @@ function KanjiEdit() {
     });
   };
 
-  // add new example word
-  const addExampleWord = () => {
-    setFormData({
-      ...formData,
-      exampleWords: [
-        ...formData.exampleWords,
-        {
-          word: "",
-          reading: "",
-          meaning: ""
-        }
-      ]
-    });
-  };
-
-  // remove example word
-  const removeExampleWord = (index) => {
-    const updatedExamples = [...formData.exampleWords];
-    updatedExamples.splice(index, 1);
-
-    setFormData({
-      ...formData,
-      exampleWords: updatedExamples
-    });
-  };
-
   // PATCH request
   const handleUpdate = async () => {
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/kanji/${editId}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(formData)
-        }
-      );
-
+      const res = await updateKanji(editId, formData);
       const data = await res.json();
-
       console.log(data);
       alert("Kanji updated successfully");
     } catch (error) {
@@ -124,13 +83,16 @@ function KanjiEdit() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]">
+    <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]
+     ">
       <form
         className="flex flex-col items-center 
-        justify-center gap-4 bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl bg">
+        justify-center gap-4 bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl  bg-sky-100 hover:bg-sky-200">
       <h2>Edit Kanji</h2>
 
-      <input
+     <div className="flex items-center justify-center gap-2 w-full">
+        <label htmlFor="character">Character : </label>
+        <input
         type="text"
         name="character"
         placeholder="Character"
@@ -138,6 +100,9 @@ function KanjiEdit() {
         onChange={handleChange}
       />
 
+     </div>
+     <div className="flex items-center justify-center gap-2 w-full">
+      <label htmlFor="meaning">Meaning : </label>
       <input
         type="text"
         name="meaning"
@@ -145,7 +110,9 @@ function KanjiEdit() {
         value={formData.meaning}
         onChange={handleChange}
       />
-
+      </div>
+      <div className="flex items-center justify-center gap-2 w-full">
+        <label htmlFor="onyomi">Onyomi : </label>
       <input
         type="text"
         name="onyomi"
@@ -153,7 +120,9 @@ function KanjiEdit() {
         value={formData.onyomi}
         onChange={handleChange}
       />
-
+      </div>
+      <div className="flex items-center justify-center gap-2 w-full">
+        <label htmlFor="kunyomi">Kunyomi : </label>
       <input
         type="text"
         name="kunyomi"
@@ -161,7 +130,9 @@ function KanjiEdit() {
         value={formData.kunyomi}
         onChange={handleChange}
       />
-
+      </div>
+      <div className="flex items-center justify-center gap-2 w-full">
+        <label htmlFor="jlpt">JLPT Level : </label>
       <input
         type="number"
         name="jlpt"
@@ -169,11 +140,11 @@ function KanjiEdit() {
         value={formData.jlpt}
         onChange={handleChange}
       />
-
+       </div>
       <h3>Example Words</h3>
 
       {formData.exampleWords.map((example, index) => (
-        <div key={index}>
+        <div key={index} className="flex items-center justify-center gap-2 w-full">
           <input
             type="text"
             name="word"
@@ -197,20 +168,10 @@ function KanjiEdit() {
             value={example.meaning}
             onChange={(e) => handleExampleChange(index, e)}
           />
-
-          <button onClick={() => removeExampleWord(index)}>
-            Remove
-          </button>
         </div>
       ))}
-
-      <button onClick={addExampleWord}>
-        Add Example Word
-      </button>
-
       <br />
       <br />
-
       <button onClick={handleUpdate}>
         Update Kanji
       </button>
@@ -219,4 +180,4 @@ function KanjiEdit() {
   );
 }
 
-export default KanjiEdit;
+export default EditKanji;

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const HiraganaSchema = new mongoose.Schema({
     character :{
@@ -15,4 +15,4 @@ const HiraganaSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model("Hiragana",HiraganaSchema)
+export default mongoose.model("Hiragana",HiraganaSchema)

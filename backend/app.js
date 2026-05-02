@@ -1,9 +1,10 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const mongoose = require('mongoose');
-const Kanji = require('./models/Kanji');
-const Hiragana = require("./models/hiragana")
-const cors = require('cors');
+import mongoose from 'mongoose';
+import hiraganaRoutes from './route/hiragana.route.js';
+import cors from 'cors';
+import kanjiRoutes from './route/kanji.route.js';
+import userRoutes from './route/user.route.js';
 
 app.use(cors());
 app.use(express.json());
@@ -14,70 +15,9 @@ mongoose.connect('mongodb://localhost:27017/kanji-app')
     .catch(err => console.log(err));
 
 
-app.get('/hiragana',async (req, res) => {
-    try{
-        const hiragana = await Hiragana.find({});
-        res.json(hiragana);
-    }catch(err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-app.get('/api/kanji', async (req, res) => {
-    try {
-        const {jlpt} = req.query;
-        let query = {};
-        if (jlpt) {
-            query.jlpt = jlpt;
-        }
-        const kanji = await Kanji.find(query);
-        res.json(kanji);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-app.get("/api/kanji/:id", async (req, res) => {
-    const {id} = req.params;
-    try {
-        const kanji = await Kanji.findById(id);
-        res.json(kanji);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-app.post('/api/kanji', async (req, res) => {
-    try{
-        const {character, meaning, onyomi, kunyomi, jlpt, exampleWords} = req.body;
-    const kanji = new Kanji({character, meaning, onyomi, kunyomi, jlpt, exampleWords});
-    await kanji.save();
-    res.json(kanji);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-app.delete('/api/kanji/:id', async (req, res) => {
-    const {id} = req.params;
-    try {
-        const kanji = await Kanji.findByIdAndDelete(id);
-        res.json(kanji);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-app.patch('/api/kanji/:id', async (req, res) => {
-    const {id} = req.params;
-    try {
-        const {character, meaning, onyomi, kunyomi, jlpt, exampleWords} = req.body;
-        const kanji = await Kanji.findByIdAndUpdate(id, {character, meaning, onyomi, kunyomi, jlpt, exampleWords});
-        res.json(kanji);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
+app.use(hiraganaRoutes);
+app.use(kanjiRoutes);
+app.use(userRoutes);
 
 app.listen(3000, () => {
     console.log('Server is running on port 3000');

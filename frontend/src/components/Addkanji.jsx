@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const AddKani = () => {
+const AddKanji = () => {
   const [character, setCharacter] = useState({
     character: "",
     meaning: "",
@@ -123,5 +123,4 @@ const AddKani = () => {
     </div>
   );
 };
-
-export default AddKani;
+export default AddKanji;

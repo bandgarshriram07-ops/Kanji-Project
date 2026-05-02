@@ -103,5 +103,4 @@ const kanjiData = [
 { character:"導", meaning:"guide", onyomi:"ドウ", kunyomi:"みちびく", jlpt:1, exampleWords:[{word:"指導",reading:"しどう",meaning:"guidance"}]}
 ];
 
-
-module.exports = { data: kanjiData };
+export default kanjiData;

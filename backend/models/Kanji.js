@@ -1,5 +1,4 @@
-
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const kanjiSchema = new mongoose.Schema({
     character: {
@@ -25,7 +24,15 @@ const kanjiSchema = new mongoose.Schema({
         word: String,
         reading: String,
         meaning: String
-    }]
+    }],
+    createdAt: {
+        type: Date,
+        default: Date.now
+    },
+    createdBy :{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    }, 
 });
 
-module.exports = mongoose.model('kanji', kanjiSchema);
+export default mongoose.model('Kanji', kanjiSchema);

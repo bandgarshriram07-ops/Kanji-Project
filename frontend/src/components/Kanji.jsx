@@ -12,7 +12,6 @@ const Kanji = () => {
       if (Level) {
          URL = `http://localhost:3000/api/kanji?jlpt=${Level}`;
       }
-  
       fetch(URL)
         .then((res) => res.json())
         .then((data) => setKanji(data));
@@ -23,31 +22,28 @@ const Kanji = () => {
     }, [level]);
 
   return (
-    <div>
-      <h2 className="text-indigo-700 text-3xl font-bold text-center my-8">
-        Kanji
-      </h2>
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 
-      p-5 w-[80%] mx-auto bg-sky-600 rounded-lg"
+      p-5 w-[100%]  bg-[#f2d492] rounded-lg"
       >
         {kanji.map((k) => (
-          <Link to={`/kanji/${k._id}`} key={k._id} >
+          <Link to={`/kanji/${k._id}`} key={k._id} className="no-underline text-inherit">
             <div
-              className="border border-indigo-600 p-4 m-4 text-center 
-          h-[150px] flex flex-col justify-content items-center bg-sky-100 text-gray-800"
+              className="p-4 m-4 text-center 
+          h-[180px] flex flex-col justify-content items-center bg-sky-100 hover:bg-sky-200
+          cursor-pointer transition duration-300 ease-in-out rounded-lg shadow-lg" 
             >
-              <h3 className="text-3xl font-bold text-indigo-700">
+              <h3 className="text-3xl font-bold no-underline text-inherit">
                 {k.character}
               </h3>
-              <p className="mt-2 text-sm text-gray-600">
-                JLPT Level : {k.jlpt}N
+              <p className="mt-1 text-sm font-bold">
+                JLPT Level : <span className="text-blue-700">{k.jlpt}N</span>
               </p>
+              <p className="text-sm font-bold">Meaning : <span className="text-blue-700">{k.meaning}</span></p>
             </div>
           </Link>
         ))}s
       </div>
-    </div>
   );
 };
 
