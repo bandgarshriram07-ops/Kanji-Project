@@ -11,10 +11,10 @@ const Home = () => {
 
   return (
     <div className="bg-[#f2d492]  min-h-screen ">
-      <div className="flex justify-center align-center flex-col items-center gap-2 m-auto ">
-        <h3 className="text-xl font-semibold mt-2">日本語の漢字を学ぼう</h3>
+      <div className="flex justify-center align-center flex-col items-center gap-2 ">
+        <h3 className="text-2xl font-bold mt-2 text-center">日本語の漢字を学ぼう</h3>
       </div>
-      <div className="flex flex-col items-center justify-center mt-10 gap-4">
+      <div className="flex flex-col items-center justify-center gap-4">
         <HomeLinks />
        
       </div>

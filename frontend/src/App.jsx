@@ -8,7 +8,7 @@ import Navbar from "./pages/Navbar";
 import AddKanji from "./components/AddKanji.jsx";
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
+import { ProtectedRoutes } from "./components/ProtectedRoute.jsx"; 
 
 function App() {
   return (
@@ -17,9 +17,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kanji" element={<Kanji />} />
-        <Route path="/kanji/:id" element={<ProtectedRoute><KanjiDetails /></ProtectedRoute>} />
-        <Route path="/kanji/:id/edit" element={<ProtectedRoute><EditKanji /></ProtectedRoute>} />
-        <Route path="/addkanji" element={<ProtectedRoute><AddKanji /></ProtectedRoute>} />
+        <Route path="/kanji/:id" element={<KanjiDetails />} />
+        <Route path="/kanji/:id/edit" element={<ProtectedRoutes><EditKanji /></ProtectedRoutes>} />
+        <Route path="/addkanji" element={<ProtectedRoutes><AddKanji /></ProtectedRoutes>} />
         <Route path="/hiragana" element={<Hiragana/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>

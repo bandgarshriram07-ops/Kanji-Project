@@ -1,5 +1,5 @@
 import Kanji from "../models/Kanji.js";
-import verifyToken from "../middleware/verifyToken.js";
+import User from "../models/user.js";
 
 
 export const getKanji = async (req,res) => {
@@ -40,7 +40,7 @@ export const createKanji = async (req,res) => {
 export const deleteKanji = async (req,res) => {
     const {id} = req.params;
     try {
-        const kanji = await Kanji.findByIdAndDelete(id);
+        const kanji = await Kanji.findById(id);
         if(!kanji){
             return res.status(404).json({message: "Kanji not found"});
         }
@@ -58,6 +58,9 @@ export const updateKanji = async (req,res) => {
     const {id} = req.params;
     try {
         const kanji = await Kanji.findById(id);
+        if(!kanji){
+            return res.status(404).json({message: "Kanji not found"});
+        }
         if(kanji.createdBy.toString() !== req.user._id.toString()){
             return res.status(401).json({message: "Unauthorized"});
         }

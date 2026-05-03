@@ -1,7 +1,6 @@
 import User from '../models/user.js';
 import bcrypt from 'bcrypt';
-import crypto from 'crypto';
-import jwt from 'jsonwebtoken';
+import { generateToken } from '../service/generateToken.js';
 
 export const register = async (req,res) => {
     try{
@@ -33,9 +32,15 @@ export const login = async (req,res) => {
         if(!isPasswordMatch){
             return res.status(400).json({message: "Invalid password"});
         }
-        const token = jwt.sign({_id : user._id , email: user.email}, process.env.MY_SECRET_KEY, {expiresIn: '7d'});
+        const token = generateToken(user);
 
-        res.status(200).json({message: "Login successful", token,user:{_id : user._id , email: user.email}});
+        res.cookie("token",token,{
+            httpOnly: true,
+            secure: false,
+            sameSite: "strict",
+            maxAge: 7*24*60*60*1000
+        });
+        res.json({message : "User logged in successfully", Token : token, user : {id : user._id, email : user.email}});
     }catch(err){
         res.status(500).json({message: err.message});
     }

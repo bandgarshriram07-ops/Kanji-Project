@@ -1,9 +1,7 @@
+
 const BASE_URL = "http://localhost:3000/api/kanji";
 
-const getAuthHeader = () => ({
- "content-type": "application/json",
- "Authorization": "Bearer " + localStorage.getItem("token")
-});
+
 
 
 export const fetchKanjiById = async (id) => {
@@ -60,11 +58,12 @@ export const register = async (userData) => {
   }
 };
 
-export const login = async (userdata) => {
+export const login = async (email,password) => {
   try {
     let response = await fetch("http://localhost:3000/api/login", {
       method: "POST",
-      body: JSON.stringify(userdata),
+      credentials : "include",
+      body: JSON.stringify({email,password}),
       headers: {
         "Content-Type": "application/json",
       },

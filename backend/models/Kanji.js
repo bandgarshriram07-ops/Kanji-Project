@@ -25,14 +25,11 @@ const kanjiSchema = new mongoose.Schema({
         reading: String,
         meaning: String
     }],
-    createdAt: {
-        type: Date,
-        default: Date.now
-    },
     createdBy :{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
-    }, 
-});
+        ref: 'User',
+        required: true
+    },
+}, { timestamps: true });
 
 export default mongoose.model('Kanji', kanjiSchema);

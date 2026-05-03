@@ -1,8 +1,10 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../services/kanjiService'
+import { login}  from '../services/kanjiService'
+import { useAuth } from '../context/AuthContext'
 const Login = () => {
     const navigate = useNavigate();
+    const {login : setAuthUser} = useAuth();
     const [success, setSuccess] = useState("");
     const [error, setError] = useState("");
     const [userData, setUserData] = useState({
@@ -10,44 +12,36 @@ const Login = () => {
         password : ""
     });
 
-    const loginUser = async (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const res = await login(userData);
-        console.log(res);
-        if(res.ok){
-            setSuccess("User logged in successfully");
-            setError("");
-            console.log(res.data);
-            localStorage.setItem("token", res.data.Token);
-            localStorage.setItem("user", JSON.stringify(res.data.user));
-            setTimeout(() => {
-            navigate("/kanji");
-            }, 2000);
-        }else{
-            setError("Invalid email or password");
-            setSuccess("");
+        if(userData.email === "" || userData.password === ""){
+            setError("Please fill all the fields");
+            return;
         }
-        console.log(res);
-        setUserData({
-            email : "",
-            password : ""
-        });
-    };
+       let result = await login(userData.email,userData.password);
+       if(result.ok){
+           setAuthUser(result.data);
+           setSuccess("Login Successful");
+           navigate("/kanji");
+       }else{
+           setError("Invalid Credentials");
+       }
+    }
+    
    const handleChange = (e) => {
-        
         setUserData({
             ...userData,
             [e.target.name]: e.target.value
         });
     };
-  return (
-    <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]">
-        {success && <div className="text-green-800 font-bold text-xl">{success}</div>}
-        {error && <div className="text-red-500 font-bold text-xl">{error}</div>}
-        <h1>Login</h1>
-        <form className="flex flex-col items-center justify-center gap-4
-         bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl  
-         bg-sky-100 hover:bg-sky-200" onSubmit={loginUser}>
+    return (
+        <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]">
+            {success && <div className="text-green-800 font-bold text-xl">{success}</div>}
+            {error && <div className="text-red-500 font-bold text-xl">{error}</div>}
+            <h1>Login</h1>
+            <form className="flex flex-col items-center justify-center gap-4
+             bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl  
+             bg-sky-100 hover:bg-sky-200" onSubmit={handleLogin}>
             <h2>Login</h2>
             <div className="flex items-center justify-center gap-2 w-full">
                 <label htmlFor="email">Email : </label>
@@ -74,5 +68,6 @@ const Login = () => {
     </div>
   )
 }
+
 
 export default Login

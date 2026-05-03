@@ -1,7 +1,9 @@
-import jwt from 'jsonwebtoken';
 
- const verifyToken = (req,res,next) => {
-    const token = req.headers.authorization?.split(' ')[1];
+import jwt from 'jsonwebtoken';
+import Kanji from '../models/Kanji.js';
+
+  const verifyToken = (req,res,next) => {
+    const token = req.cookies.token;
     if(!token){
         return res.status(401).json({message: "Unauthorized"});
     }
@@ -13,5 +15,28 @@ import jwt from 'jsonwebtoken';
         res.status(401).json({message: "Unauthorized"});
     }
 }
+const isAdmin = (req,res,next) => {
+    if(req.user.role === "admin"){
+        return next();
+    }else{
+        return res.status(403).json({message: "Unauthorized"});
+    }
+};
 
-export default verifyToken; 
+const isOwnerOrAdmin = async (req,res,next) => {
+    const kanji = await Kanji.findById(req.params.id);
+
+    if(!kanji){
+        return res.status(404).json({message: "Kanji not found"});
+    }
+
+    if(kanji.createdBy.toString() === req.user._id.toString() || req.user.role === "admin"){
+        return next();
+    }else{
+        return res.status(403).json({message: "Unauthorized"});
+    }
+
+}
+
+
+export {verifyToken, isAdmin, isOwnerOrAdmin};
