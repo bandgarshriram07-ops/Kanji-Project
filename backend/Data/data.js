@@ -1,38 +1,4 @@
 
-// const kanjiData = [
-//   {
-//     character: "日",
-//     meaning: "sun / day",
-//     onyomi: "ニチ, ジツ",
-//     kunyomi: "ひ, か",
-//     jlpt: 5,
-//     exampleWords: [
-//       { word: "日本", reading: "にほん", meaning: "Japan" },
-//       { word: "日曜日", reading: "にちようび", meaning: "Sunday" },
-//     ],
-//   },
-//   {
-//     character: "水",
-//     meaning: "water",
-//     onyomi: "スイ",
-//     kunyomi: "みず",
-//     jlpt: 5,
-//     exampleWords: [
-//       { word: "水曜日", reading: "すいようび", meaning: "Wednesday" },
-//     ],
-//   },
-//   {
-//     character: "火",
-//     meaning: "fire",
-//     onyomi: "カ",
-//     kunyomi: "ひ",
-//     jlpt: 5,
-//     exampleWords: [{ word: "火山", reading: "かざん", meaning: "volcano" }],
-//   },
-// ];
-
-// module.exports = {data: kanjiData};
-
 const kanjiData = [
 
 { character:"会", meaning:"meet", onyomi:"カイ", kunyomi:"あう", jlpt:4, exampleWords:[{word:"会社",reading:"かいしゃ",meaning:"company"}]},
@@ -46,16 +12,7 @@ const kanjiData = [
 { character:"業", meaning:"business", onyomi:"ギョウ", kunyomi:"", jlpt:4, exampleWords:[{word:"作業",reading:"さぎょう",meaning:"work"}]},
 { character:"方", meaning:"direction", onyomi:"ホウ", kunyomi:"かた", jlpt:4, exampleWords:[{word:"方法",reading:"ほうほう",meaning:"method"}]},
 
-{ character:"新", meaning:"new", onyomi:"シン", kunyomi:"あたらしい", jlpt:4, exampleWords:[{word:"新聞",reading:"しんぶん",meaning:"newspaper"}]},
-{ character:"場", meaning:"place", onyomi:"ジョウ", kunyomi:"ば", jlpt:4, exampleWords:[{word:"工場",reading:"こうじょう",meaning:"factory"}]},
-{ character:"員", meaning:"member", onyomi:"イン", kunyomi:"", jlpt:4, exampleWords:[{word:"店員",reading:"てんいん",meaning:"staff"}]},
-{ character:"立", meaning:"stand", onyomi:"リツ", kunyomi:"たつ", jlpt:4, exampleWords:[{word:"立つ",reading:"たつ",meaning:"to stand"}]},
-{ character:"開", meaning:"open", onyomi:"カイ", kunyomi:"ひらく", jlpt:4, exampleWords:[{word:"開く",reading:"ひらく",meaning:"to open"}]},
-{ character:"手", meaning:"hand", onyomi:"シュ", kunyomi:"て", jlpt:4, exampleWords:[{word:"手紙",reading:"てがみ",meaning:"letter"}]},
-{ character:"力", meaning:"power", onyomi:"リョク", kunyomi:"ちから", jlpt:4, exampleWords:[{word:"力仕事",reading:"ちからしごと",meaning:"physical work"}]},
-{ character:"問", meaning:"question", onyomi:"モン", kunyomi:"とい", jlpt:4, exampleWords:[{word:"問題",reading:"もんだい",meaning:"problem"}]},
-{ character:"代", meaning:"generation", onyomi:"ダイ", kunyomi:"", jlpt:4, exampleWords:[{word:"時代",reading:"じだい",meaning:"era"}]},
-{ character:"明", meaning:"bright", onyomi:"メイ", kunyomi:"あかるい", jlpt:4, exampleWords:[{word:"説明",reading:"せつめい",meaning:"explanation"}]},
+
 
 { character:"動", meaning:"move", onyomi:"ドウ", kunyomi:"うごく", jlpt:4, exampleWords:[{word:"運動",reading:"うんどう",meaning:"exercise"}]},
 { character:"京", meaning:"capital", onyomi:"キョウ", kunyomi:"", jlpt:4, exampleWords:[{word:"東京",reading:"とうきょう",meaning:"Tokyo"}]},

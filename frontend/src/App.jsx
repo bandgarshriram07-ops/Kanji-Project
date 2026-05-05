@@ -3,27 +3,36 @@ import Kanji from "./components/Kanji";
 import KanjiDetails from "./components/KanjiDetails";
 import EditKanji from "./components/EditKanij";
 import Home from "./components/Home";
+import DeleteKanji from "./components/DeleteButton.jsx";
 import Hiragana from "./components/Hiragana";
+import Katakana from "./components/Katakana";
 import Navbar from "./pages/Navbar";
 import AddKanji from "./components/AddKanji.jsx";
 import Register from "./components/Register.jsx";
 import Login from "./components/Login.jsx";
+import LogoutUser from "./components/LogoutUser";
 import { ProtectedRoutes } from "./components/ProtectedRoute.jsx"; 
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
   return (
     <BrowserRouter >
+      <AuthProvider>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/kanji" element={<Kanji />} />
         <Route path="/kanji/:id" element={<KanjiDetails />} />
-        <Route path="/kanji/:id/edit" element={<ProtectedRoutes><EditKanji /></ProtectedRoutes>} />
+        <Route path="/kanji/:id/edit" element={<EditKanji />} />
         <Route path="/addkanji" element={<ProtectedRoutes><AddKanji /></ProtectedRoutes>} />
+        <Route path="/kanji/:id/delete" element={<ProtectedRoutes><DeleteKanji/></ProtectedRoutes>} />
         <Route path="/hiragana" element={<Hiragana/>}/>
+        <Route path="/katakana" element={<Katakana/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/logout" element={<LogoutUser/>}/>
       </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

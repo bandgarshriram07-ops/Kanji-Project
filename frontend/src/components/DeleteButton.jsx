@@ -1,14 +1,18 @@
 import React from 'react'
-import { useParams,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {deleteKanji} from '../services/kanjiService'
 
 const DeleteButton = ({id}) => {
   const navigate = useNavigate();
   const handelDelete = async () => {
+   try{
     await deleteKanji(id);
     alert("Kanji Deleted")
     console.log(id);
     navigate("/kanji");
+   }catch(err){
+    console.log(err);
+   }
     }
   
   return (

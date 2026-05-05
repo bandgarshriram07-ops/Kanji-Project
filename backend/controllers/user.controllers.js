@@ -32,15 +32,35 @@ export const login = async (req,res) => {
         if(!isPasswordMatch){
             return res.status(400).json({message: "Invalid password"});
         }
-        const token = generateToken(user);
+        const cookie = generateToken(user);
 
-        res.cookie("token",token,{
+        res.cookie("token",cookie,{
             httpOnly: true,
             secure: false,
-            sameSite: "strict",
-            maxAge: 7*24*60*60*1000
+            sameSite: "lax",
+            maxAge: 1*60*60*24*30
         });
-        res.json({message : "User logged in successfully", Token : token, user : {id : user._id, email : user.email}});
+        res.json({message : "User logged in successfully", user : {id : user._id, email : user.email}});
+    }catch(err){
+        res.status(500).json({message: err.message});
+    }
+};
+
+export const getMe =  (req,res) => {
+    try{
+        
+        res.json({message : "User found successfully",
+             user : {id : req.user._id, email : req.user.email, role : req.user.role}});
+
+    }catch(err){
+        res.status(500).json({message: err.message});
+    }
+};
+
+export const logout = async (req,res) => {
+    try{
+        res.clearCookie("token");
+        res.json({message : "User logged out successfully"});   
     }catch(err){
         res.status(500).json({message: err.message});
     }

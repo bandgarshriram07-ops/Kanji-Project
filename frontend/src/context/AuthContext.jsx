@@ -1,15 +1,33 @@
-import {useState, useContext,createContext} from 'react'
+import {useState, useContext,createContext,useEffect} from 'react'
 
 const AuthContext = createContext();
 
 export  const AuthProvider = ({children}) => {  
+
   const [user, setUser] = useState(null);
 
-  const login = (userData) => setUser(userData);
-  const logout = () => setUser(null);
+   useEffect(() => {
+    const getUserData = async () => {
+      
+     try{
+      const res = await fetch("http://localhost:3000/api/me",{
+        method : "GET",
+        credentials : "include"
+      });
+      const data = await res.json();
+      setUser(data.user);
+      }catch(err){
+        setUser(null);
+      };
+     }
+     getUserData();
+  },[]);
+
+  const Login = (userData) => setUser(userData);
+  const Logout = () => setUser(null);
 
   return (
-    <AuthContext.Provider value={{user, login, logout}}>
+    <AuthContext.Provider value={{user,Login,Logout}}>
       {children}
     </AuthContext.Provider>
   )

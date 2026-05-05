@@ -1,35 +1,58 @@
-import { useState } from "react";
+import React ,{useState} from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
-import { useNavigate } from "react-router-dom";
+import LogoutUser from "../components/LogoutUser";
+import { useAuth } from "../context/AuthContext";
+import ListIcon from '@mui/icons-material/List';
+import { TiThMenu } from "react-icons/ti";
 
 
 const Navbar = () => {
-   const navigate = useNavigate();
-  const hadleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  }
+   const [open, setOpen] = useState(false);
+   const {user} = useAuth();   
+
    
   return (
-    <nav className="navbar navbar-expand-lg bg-slate-900">
-       <div className="flex  items-center p-4 bg-gray-800 text-white">
-        <div className="">
-         <Link to={"/"}><img src={logo} alt="logo" className="w-10 h-10 rounded-full" /></Link>
+  
+     <nav className="bg-purple-500 text-white ">
+     
+      <div className="h-16 flex items-center justify-between">
+      <div  >
+         <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
+      </div>
+         <div className="hidden md:block">
+            <Link to="/" className=" text-lg px-4 no-underline text-inherit text-white">Home</Link>
+            <Link to="/kanji" className="  text-lg px-4 no-underline text-inherit">Kanji</Link>
+            <Link to="/hiragana" className=" no-underline text-inherit text-lg px-4">Hiragana</Link>
+            <Link to="/katakana" className=" no-underline text-inherit text-lg px-4">Katakana</Link>
+            <Link to="/addKanji" className="  no-underline text-inherit">Add Kanji</Link>
+            <Link to="/register" className="  text-lg px-4 no-underline text-inherit">Register</Link>
         </div>
-        <div className=" flex  items-center gap-4 sm:mx-auto sm:justify-center">
-            <Link to="/" className="text-white hover:text-gray-300 font-bold">Home</Link>
-            <Link to="/kanji" className="text-white hover:text-gray-300 font-bold">Kanji</Link>
-            <Link to="/hiragana" className="text-white hover:text-gray-300 font-bold">Hiragana</Link>
-            <Link to="/addKanji" className="text-white hover:text-gray-300 font-bold">Add Kanji</Link>
-            <Link to="/register" className="text-white hover:text-gray-300 font-bold">Register</Link>
-            <Link to="/login" className="text-white hover:text-gray-300 font-bold">Login</Link>
-            <button onClick={hadleLogout} className="text-white hover:text-gray-300 font-bold bg-red-500
-             rounded-full px-4 py-2">Logout</button>
+        <div className="px-4 ">
+         <Link to="/login" className="bg-blue-500 text-white px-4 py-2
+            rounded-full hover:bg-blue-600 no-underline text-inherit">Login</Link>
+      </div>
+      <button className="px-4 text-3xl block cursor-pointer md:hidden 
+      border-none outline-none bg-purple-500" onClick={() => setOpen(!open)}>
+      <ListIcon />
+          </button>
+         </div>
+           {/* response nav */}
+        <div className={`${open ? "block" : "hidden"} md:hidden  bg-gray-200 space-y-2 pb-3`}>
+          <div className="flex flex-col gap-4 p-4 text-black">
+            <Link to="/" className=" hover:text-gray-500 block no-underline text-inherit">Home</Link>
+            <Link to="/kanji" className="hover:text-gray-500  block no-underline text-inherit">Kanji</Link>
+            <Link to="/hiragana" className="hover:text-gray-500 block no-underline text-inherit">Hiragana</Link>
+            <Link to="/katakana" className="hover:text-gray-500 block no-underline text-inherit">Katakana</Link>
+            <Link to="/addKanji" className="hover:text-gray-500 block no-underline text-inherit">Add Kanji</Link>
+            <Link to="/register" className=" hover:text-gray-500 block no-underline text-inherit">Register</Link>
+          </div>
         </div>
-    </div>
-    </nav>
-  );
+  
+    
+      </nav>
+
+  )
 };
 
 export default Navbar;

@@ -66,7 +66,7 @@ export const updateKanji = async (req,res) => {
         }
         
     
-        const updatedKanji = await Kanji.findByIdAndUpdate(id,req.body,{new : true});
+        const updatedKanji = await Kanji.findByIdAndUpdate(id,req.body,{returnDocument: "after",new : true});
         res.json(updatedKanji);
     } catch (err) {
         res.status(500).json({ message: err.message });

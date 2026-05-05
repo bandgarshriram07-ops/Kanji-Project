@@ -3,16 +3,19 @@ import Kanji from '../models/Kanji.js';
 import KanjiData from "./data.js";
 import hiraganaData from "./hiraganaData.js"
 import Hiragana from "../models/hiragana.js"
+import KatakanaData from "./katakanaData.js"
+import Katakana from "../models/katakana.js"
 
 
-mongoose.connect('mongodb://localhost:27017/kanji-app')
-    .then(() =>{ console.log('MongoDB connected'); 
-        seedKanji();
-        seedHiragana();
-    } )
-    .catch(err => console.log(err));
+// mongoose.connect(process.env.MONGODB_URI)
+//     .then(() =>{ console.log('MongoDB connected'); 
+//         seedKanji();
+//         seedHiragana();
+//         seedKanakata();
+//     } )
+//     .catch(err => console.log(err)); 
 
-async function seedKanji() {
+export const seedKanji = async () => {
     try {
         await Kanji.deleteMany({});
         await Kanji.insertMany(KanjiData);
@@ -23,7 +26,7 @@ async function seedKanji() {
 };
 
 
-async function seedHiragana(){
+export async function seedHiragana(){
     try{
         await Hiragana.deleteMany({});
         await Hiragana.insertMany(hiraganaData);
@@ -32,4 +35,15 @@ async function seedHiragana(){
     {
          console.log('Error seeding kanji data:', err.message);
     }
-}
+};
+
+ export async function seedKanakata(){
+    try{
+        await Katakana.deleteMany({});
+        await Katakana.insertMany(KatakanaData);
+        console.log("Successfully Insert katakana data")
+    }catch(err)
+    {
+         console.log('Error seeding kanji data:', err.message);
+    }
+};

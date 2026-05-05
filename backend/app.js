@@ -5,9 +5,12 @@ import hiraganaRoutes from './route/hiragana.route.js';
 import cors from 'cors';
 import kanjiRoutes from './route/kanji.route.js';
 import userRoutes from './route/user.route.js';
+import  getHiragana from "./route/hiragana.route.js";
+import getKanakata from "./route/katakana.route.js";
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
 dotenv.config();
+import { seedKanji, seedHiragana, seedKanakata } from './Data/initdata.js';
 
 app.use(cors({
     origin : "http://localhost:5173",
@@ -17,15 +20,21 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-mongoose.connect('mongodb://localhost:27017/kanji-app')
-    .then(() => console.log('MongoDB connected'))
-    .catch(err => console.log(err));
+mongoose.connect(process.env.MONGODB_URI)
+.then(() =>{console.log('MongoDB connected')
+        //   seedKanji();
+        // seedHiragana();
+        // seedKanakata()
+})
+.catch(err => console.log(err));
 
 
-app.use(hiraganaRoutes);
+app.use(getHiragana);
 app.use(kanjiRoutes);
 app.use(userRoutes);
+app.use(getKanakata);
 
 app.listen(3000, () => {
-    console.log('Server is running on port 3000');
-});
+    console.log('Server is running on port 3000');});
+
+

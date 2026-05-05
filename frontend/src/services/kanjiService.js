@@ -1,3 +1,4 @@
+import { use } from "react";
 
 const BASE_URL = "http://localhost:3000/api/kanji";
 
@@ -6,11 +7,13 @@ const BASE_URL = "http://localhost:3000/api/kanji";
 
 export const fetchKanjiById = async (id) => {
   try {
-    let response = await fetch(`${BASE_URL}/${id}`);
+    let response = await fetch(`${BASE_URL}/${id}`,{
+      method : "GET",
+      credentials : "include"});
     const data = await response.json();
     return data;
   } catch (err) {
-    return resizeBy.status(500).json({ message: err.message });
+   console.log(err);
   }
 };
 
@@ -18,13 +21,17 @@ export const updateKanji = async (id, formData) => {
   try {
     let response = await fetch(`${BASE_URL}/${id}`, {
       method: "PATCH",
-      headers: getAuthHeader(),
+      credentials : "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(formData),
     });
+    console.log(formData.jlpt);
     const data = await response.json();
     return data;
   } catch (err) {
-    return resizeBy.status(500).json({ message: err.message });
+    return console.log(err);
   }
 };
 
@@ -32,7 +39,7 @@ export const deleteKanji = async (id) => {
   try{
       let response = await fetch(`${BASE_URL}/${id}`, {
       method: "DELETE",
-      headers: getAuthHeader(),
+      credentials : "include",
     });
     const data = await response.json();
     return data;
@@ -46,6 +53,7 @@ export const register = async (userData) => {
     const REGISTER_URL = "http://localhost:3000/api/register";
     let response = await fetch(REGISTER_URL, {
       method: "POST",
+      credentials : "include",
       body: JSON.stringify(userData),
       headers: {
         "Content-Type": "application/json",
@@ -69,8 +77,37 @@ export const login = async (email,password) => {
       },
     });
     const userData = await response.json();
+    console.log("api is called");
     return { ok: response.ok, data: userData };
   } catch (err) {
     console.log(err);
   }
 };
+
+export const logOutUser = async () => {
+  try{
+    const res = await fetch("http://localhost:3000/api/logout",{
+      method : "POST",
+      credentials : "include"
+    });
+    const data = await res.json();
+    return data;
+  }catch(err){
+    console.log(err);
+  }
+}
+
+
+export const getKatakana = async () => {
+  try{
+    const res = await fetch("http://localhost:3000/api/katakana",{
+      method : "GET",
+      credentials : "include"
+    });
+    const data = await res.json();
+    return data;
+
+  }catch(err){
+    console.log(err);
+  }
+}

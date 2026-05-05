@@ -34,7 +34,9 @@ const AddKanji = () => {
 
     let response = await fetch(URL, {
       method: "POST",
+      credentials : "include",
       headers: {
+      credentials : "include",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(payload),
@@ -56,11 +58,11 @@ const AddKanji = () => {
     });
   };
   return (
-    <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]">
+    <div className="flex flex-col items-center justify-center gap-4 min-h-screen ">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center 
-        justify-center gap-4 bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl bg"
+        justify-center gap-4 bg-gray-700 p-8 rounded-md shadow-md w-[40%] mx-auto rounded-xl  "
       >
         <div className="flex flex-col items-center justify-center gap-4">
           <input
@@ -69,7 +71,8 @@ const AddKanji = () => {
               value={character.character}
               onChange={handleChange}
               placeholder="Character"
-              className="border-2 border-gray-300 rounded-md p-2 sm:mx-auto"
+              className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500 border-none"
             />
         </div>
         <div className="flex flex-col items-center justify-center gap-4" >
@@ -79,44 +82,57 @@ const AddKanji = () => {
               value={character.meaning}
               onChange={handleChange}
               placeholder="Meaning"
-              className="border-2 border-gray-300 rounded-md p-2"
+              className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500 border-none"
             />
         </div>
-        <div>
+        <div className="flex flex-col items-center justify-center gap-4">
         <input
           type="text"
           name="onyomi"
           value={character.onyomi}
           onChange={handleChange}
           placeholder="Onyomi"
-          className="border-2 border-gray-300 rounded-md p-2"
-        />
+          className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500 border-none" />
         </div>
+        <div className="flex flex-col items-center justify-center gap-4">
         <input
           type="text"
           name="kunyomi"
           value={character.kunyomi}
           onChange={handleChange}
           placeholder="Kunyomi"
-          className="border-2 border-gray-300 rounded-md p-2"
+          className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500 border-none"
         />
+        </div>
+        <div className="flex flex-col items-center justify-center gap-4">
         <input
           type="text"
           name="jlpt"
           value={character.jlpt}
           onChange={handleChange}
           placeholder="JLPT (1-5)"
-          className="border-2 border-gray-300 rounded-md p-2"
+          className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500 border-none"
         />
+        </div>
+        <div className="flex flex-col items-center justify-center gap-4">
         <input
           type="text"
           name="exampleWords"
           value={character.exampleWords}
           onChange={handleChange}
           placeholder="Example words (comma separated)"
-          className="border-2 border-gray-300 rounded-md p-2"
+          className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500 border-none"
         />
-        <button type="submit" className="bg-blue-500 text-white rounded-md p-2">
+        </div>
+        <button type="submit" className="text-white bg-blue-500
+            hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
+             font-medium rounded-lg text-sm px-5 py-2.5 text-center border-none
+             w-[10rem] md:w-[15rem] mt-4">
           Add Kanji
         </button>
       </form>

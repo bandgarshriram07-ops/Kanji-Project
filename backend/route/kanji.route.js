@@ -5,8 +5,8 @@ import { getKanji, getKanjiById, createKanji, deleteKanji, updateKanji } from '.
 
 const router = Router();
 router.route('/api/kanji').get(getKanji).post(verifyToken,createKanji);
-router.route('/api/kanji/:id').get(verifyToken, getKanjiById)
-.patch(verifyToken,isAdmin,isOwnerOrAdmin,updateKanji)
-.delete(verifyToken,isAdmin,isOwnerOrAdmin,deleteKanji);
+router.route('/api/kanji/:id').get( getKanjiById)
+.patch(verifyToken,isOwnerOrAdmin,updateKanji)
+.delete(verifyToken,isOwnerOrAdmin,deleteKanji);
 
 export default router;

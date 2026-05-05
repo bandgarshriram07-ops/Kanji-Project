@@ -24,7 +24,7 @@ const Kanji = () => {
   return (
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 
-      p-5 w-[100%]  bg-[#f2d492] rounded-lg"
+      p-5 w-[100%]   rounded-lg"
       >
         {kanji.map((k) => (
           <Link to={`/kanji/${k._id}`} key={k._id} className="no-underline text-inherit">

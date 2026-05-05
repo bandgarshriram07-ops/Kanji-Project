@@ -4,9 +4,7 @@ import { login}  from '../services/kanjiService'
 import { useAuth } from '../context/AuthContext'
 const Login = () => {
     const navigate = useNavigate();
-    const {login : setAuthUser} = useAuth();
-    const [success, setSuccess] = useState("");
-    const [error, setError] = useState("");
+    const {Login : setAuthUser} = useAuth();
     const [userData, setUserData] = useState({
         email : "",
         password : ""
@@ -19,12 +17,12 @@ const Login = () => {
             return;
         }
        let result = await login(userData.email,userData.password);
-       if(result.ok){
-           setAuthUser(result.data);
-           setSuccess("Login Successful");
-           navigate("/kanji");
+       if(result && result.ok){
+           setAuthUser(result.data.user);
+              alert("Login Successful");
+               navigate("/");
        }else{
-           setError("Invalid Credentials");
+           alert("Invalid Credentials");
        }
     }
     
@@ -35,35 +33,39 @@ const Login = () => {
         });
     };
     return (
-        <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]">
-            {success && <div className="text-green-800 font-bold text-xl">{success}</div>}
-            {error && <div className="text-red-500 font-bold text-xl">{error}</div>}
-            <h1>Login</h1>
-            <form className="flex flex-col items-center justify-center gap-4
-             bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl  
-             bg-sky-100 hover:bg-sky-200" onSubmit={handleLogin}>
-            <h2>Login</h2>
-            <div className="flex items-center justify-center gap-2 w-full">
-                <label htmlFor="email">Email : </label>
+        <div className="flex flex-col items-center   min-h-screen  w-screen">
+            <form className="flex flex-col items-center px-8 rounded-md shadow-md
+            bg-gray-700  max-w-sm  rounded-xl  
+                h-[20rem] mt-12" onSubmit={handleLogin}>
+            <h2 className='text-3xl font-bold text-center text-white'>Login</h2>
+            <div className=" w-full px-4 ">
+                <label className='block font-medium text-gray-700 mt-4 text-white' htmlFor="email">Email </label>
                 <input
                 type="email"
                 name="email"
                 placeholder="Email"
                 value={userData.email}
                 onChange={handleChange}
+                className='mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none'
               />
             </div>
-            <div className="flex items-center justify-center gap-2 w-full">
-                <label htmlFor="password">Password : </label>
+            <div className=" w-full ">
+                <label className='block font-medium text-gray-700 mt-4 text-white' htmlFor="password">Password </label>
                 <input
                 type="password"
                 name="password"
                 placeholder="Password"
                 value={userData.password}
                 onChange={handleChange}
+                className='mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500 border-none'
               />
             </div>
-            <button type="submit">Login</button>
+            <button className='text-white bg-blue-500
+            hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
+             font-medium rounded-lg text-sm px-5 py-2.5 text-center border-none
+             w-full mt-4' type="submit">Login</button>
         </form>
     </div>
   )

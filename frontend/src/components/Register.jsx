@@ -4,8 +4,6 @@ import { register } from "../services/kanjiService";
 
 export default function Register(){
     const navigate = useNavigate();
-    const [success, setSuccess] = useState("");
-    const [error, setError] = useState("");
     const [userData, setUserData] = useState({
         name: "",
         email : "",
@@ -15,14 +13,14 @@ export default function Register(){
         e.preventDefault();
         const res = await register(userData);
         if(res.ok){
-            setSuccess("User registered successfully");
-            setError("");
+            alert("User registered successfully");
+           
            setTimeout(() => {
             navigate("/login");
             }, 2000);
         }else{
-            setError("User already registered");
-            setSuccess("");
+            alert("User already registered");
+            
         }
         setUserData({
             name: "",
@@ -39,45 +37,51 @@ export default function Register(){
     };
 
      return(
-        <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]">
-            <h1>Register</h1>
-            {success && <div className="text-green-800 font-bold text-xl">{success}</div>}
-            {error && <div className="text-red-500 font-bold text-xl">{error}</div>}
-            <form className="flex flex-col items-center justify-center gap-4
-             bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl  
-             bg-sky-100 hover:bg-sky-200" onSubmit={registerUser}>
-                <h2>Register</h2>
-                <div className="flex items-center justify-center gap-2 w-full">
-                    <label htmlFor="name">Name : </label>
+        <div className="flex flex-col items-center   min-h-screen  w-screen ">
+            <form className="flex flex-col items-center px-12 rounded-md shadow-md
+            bg-gray-700  max-w-sm  rounded-xl
+                h-[26rem] mt-12" onSubmit={registerUser}>
+                <h2 className='text-3xl font-bold text-center text-white'>Register</h2>
+                <div className=" w-full px-4 ">
+                    <label htmlFor="name" className='block font-medium text-gray-700 mt-4 text-white'>Name </label>
                     <input
                     type="text"
                     name="name"
                     placeholder="Name"
                     value={userData.name}
                     onChange={handleChange}
+                    className='mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none'
                   />
                 </div>
-                <div className="flex items-center justify-center gap-2 w-full">
-                    <label htmlFor="email">Email : </label>
+                <div className="px-4 w-full">
+                    <label htmlFor="email" className='block font-medium text-gray-700 mt-4 text-white'>Email  </label>
                     <input
                     type="email"
                     name="email"
                     placeholder="Email"
                     value={userData.email}
                     onChange={handleChange}
+                    className='mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none'
                   />
                 </div>
-                <div className="flex items-center justify-center gap-2 w-full">
-                    <label htmlFor="password">Password : </label>
+                <div className="px-4 w-full">
+                    <label htmlFor="password" className='block font-medium text-gray-700 mt-4 text-white'>Password </label>
                     <input
                     type="password"
                     name="password"
                     placeholder="Password"
                     value={userData.password}
                     onChange={handleChange}
+                    className='mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none'
                   />
                 </div>
-                <button type="submit">Register</button>
+                <button className='text-white bg-blue-500
+            hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300
+             font-medium rounded-lg text-sm px-5 py-2.5 text-center border-none
+             w-full mt-6' type="submit">Register</button>
             </form>
            
         </div>

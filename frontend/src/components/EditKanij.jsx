@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,useNavigate } from "react-router-dom";
 import { fetchKanjiById ,updateKanji} from "../services/kanjiService";
 
 function EditKanji() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [editId, setEditId] = useState(id);
 
   const [formData, setFormData] = useState({
@@ -71,12 +72,13 @@ function EditKanji() {
   };
 
   // PATCH request
-  const handleUpdate = async () => {
+  const handleUpdate = async (e) => {
+    e.preventDefault();
     try {
       const res = await updateKanji(editId, formData);
-      const data = await res.json();
-      console.log(data);
+      console.log(res);
       alert("Kanji updated successfully");
+      navigate(`/kanji/${editId}`);
     } catch (error) {
       console.log(error);
     }
@@ -87,7 +89,8 @@ function EditKanji() {
      ">
       <form
         className="flex flex-col items-center 
-        justify-center gap-4 bg-white p-8 rounded-md shadow-md w-[50%] mx-auto rounded-xl  bg-sky-100 hover:bg-sky-200">
+        justify-center gap-4 bg-white p-8 rounded-md shadow-md w-[50%] 
+        mx-auto rounded-xl  bg-sky-100 hover:bg-sky-200" onSubmit={handleUpdate}>
       <h2>Edit Kanji</h2>
 
      <div className="flex items-center justify-center gap-2 w-full">
@@ -172,7 +175,7 @@ function EditKanji() {
       ))}
       <br />
       <br />
-      <button onClick={handleUpdate}>
+      <button type="submit">
         Update Kanji
       </button>
       </form>

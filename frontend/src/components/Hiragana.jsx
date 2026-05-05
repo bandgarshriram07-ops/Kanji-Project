@@ -14,7 +14,7 @@ const Hiragana = () => {
     handleDta();
   }, []);
   return (
-   <div className=" w-full min-h-screen bg-[#f2d492] mx-0 ">
+   <div className=" w-full min-h-screen  mx-0 ">
     <h1 className="text-indigo-700 text-3xl font-bold
      text-center m-auto">Hiragana</h1>
      <div  className="grid grid-cols-5 gap-4">
