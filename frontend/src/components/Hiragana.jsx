@@ -14,16 +14,16 @@ const Hiragana = () => {
     handleDta();
   }, []);
   return (
-   <div className=" w-full min-h-screen  mx-0 ">
+   <div className=" w-[80%] min-h-screen  mx-auto">
     <h1 className="text-indigo-700 text-3xl font-bold
-     text-center m-auto">Hiragana</h1>
+     text-center m-auto mb-3">Hiragana</h1>
      <div  className="grid grid-cols-5 gap-4">
       {hiragana.map((Cha) => {
         return (
-          <div key={Cha._id} className="my-4 mx-4  flex  flex-col justify-content 
+          <div key={Cha._id} className=" flex  flex-col justify-content 
           items-center  bg-sky-100  shadow-lg rounded-lg">
-            <p className="text-2xl font-bold py-2">{Cha.character}</p>
-            <p className="text-xl">{Cha.romaji}</p>
+            <p className="text-xl font-bold py-2">{Cha.character}</p>
+            <p className="text-sm">{Cha.romaji}</p>
           </div>
         );
       })}

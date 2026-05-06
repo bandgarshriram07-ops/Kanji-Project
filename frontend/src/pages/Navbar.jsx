@@ -1,10 +1,8 @@
 import React ,{useState} from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.jpg";
-import LogoutUser from "../components/LogoutUser";
 import { useAuth } from "../context/AuthContext";
 import ListIcon from '@mui/icons-material/List';
-import { TiThMenu } from "react-icons/ti";
 
 
 const Navbar = () => {
@@ -14,21 +12,23 @@ const Navbar = () => {
    
   return (
   
-     <nav className="bg-purple-500 text-white ">
+     <nav className="bg-purple-500 text-white sticky top-0 z-50">
      
       <div className="h-16 flex items-center justify-between">
-      <div  >
-         <img src={logo} alt="logo" className="w-10 h-10 rounded-full" />
+      <div className="px-6">
+         <img src={logo} alt="logo" className="w-12 h-12 rounded-full" />
       </div>
          <div className="hidden md:block">
-            <Link to="/" className=" text-lg px-4 no-underline text-inherit text-white">Home</Link>
-            <Link to="/kanji" className="  text-lg px-4 no-underline text-inherit">Kanji</Link>
-            <Link to="/hiragana" className=" no-underline text-inherit text-lg px-4">Hiragana</Link>
-            <Link to="/katakana" className=" no-underline text-inherit text-lg px-4">Katakana</Link>
-            <Link to="/addKanji" className="  no-underline text-inherit">Add Kanji</Link>
-            <Link to="/register" className="  text-lg px-4 no-underline text-inherit">Register</Link>
+            <Link to="/" className=" text-lg px-4 no-underline text-inherit text-white font-semibold">Home</Link>
+            <Link to="/kanji" className="  text-lg px-4 no-underline text-inherit font-semibold">Kanji</Link>
+            <Link to="/hiragana" className=" no-underline text-inherit text-lg px-4 font-semibold">Hiragana</Link>
+            <Link to="/katakana" className=" no-underline text-inherit text-lg px-4 font-semibold">Katakana</Link>
+            <Link to="/addKanji" className="  no-underline text-inherit font-semibold">Add Kanji</Link>
+            <Link to="/register" className="  text-lg px-4 no-underline text-inherit font-semibold">Register</Link>
         </div>
-        <div className="px-4 ">
+        <div className="px-4 mx-4">
+         <Link to="/logout" className="bg-red-500 text-white px-4
+          py-2 rounded-full hover:bg-blue-600 no-underline text-inherit mr-4">Logout</Link>
          <Link to="/login" className="bg-blue-500 text-white px-4 py-2
             rounded-full hover:bg-blue-600 no-underline text-inherit">Login</Link>
       </div>

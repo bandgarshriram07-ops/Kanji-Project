@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
-import { useParams,useNavigate } from "react-router-dom";
-import { fetchKanjiById ,updateKanji} from "../services/kanjiService";
+import { useParams, useNavigate } from "react-router-dom";
+import { fetchKanjiById, updateKanji } from "../services/kanjiService";
 
 function EditKanji() {
   const { id } = useParams();
@@ -18,32 +18,32 @@ function EditKanji() {
       {
         word: "",
         reading: "",
-        meaning: ""
-      }
-    ]
+        meaning: "",
+      },
+    ],
   });
 
   useEffect(() => {
     const fetchKanji = async () => {
-        const kanji = await fetchKanjiById(id);
-        setEditId(kanji._id || id);
-        setFormData({
-          character: kanji.character || "",
-          meaning: kanji.meaning || "",
-          onyomi: kanji.onyomi || "",
-          kunyomi: kanji.kunyomi || "",
-          jlpt: kanji.jlpt || "",
-          exampleWords:
-            kanji.exampleWords?.length > 0
-              ? kanji.exampleWords
-              : [
-                  {
-                    word: "",
-                    reading: "",
-                    meaning: ""
-                  }
-                ]
-        });
+      const kanji = await fetchKanjiById(id);
+      setEditId(kanji._id || id);
+      setFormData({
+        character: kanji.character || "",
+        meaning: kanji.meaning || "",
+        onyomi: kanji.onyomi || "",
+        kunyomi: kanji.kunyomi || "",
+        jlpt: kanji.jlpt || "",
+        exampleWords:
+          kanji.exampleWords?.length > 0
+            ? kanji.exampleWords
+            : [
+                {
+                  word: "",
+                  reading: "",
+                  meaning: "",
+                },
+              ],
+      });
     };
 
     if (id) {
@@ -55,7 +55,7 @@ function EditKanji() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -67,7 +67,7 @@ function EditKanji() {
 
     setFormData({
       ...formData,
-      exampleWords: updatedExamples
+      exampleWords: updatedExamples,
     });
   };
 
@@ -85,99 +85,106 @@ function EditKanji() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 min-h-screen bg-[#f2d492]
-     ">
+    <div className="flex flex-col items-center justify-center gap-4 min-h-screen " >
       <form
-        className="flex flex-col items-center 
-        justify-center gap-4 bg-white p-8 rounded-md shadow-md w-[50%] 
-        mx-auto rounded-xl  bg-sky-100 hover:bg-sky-200" onSubmit={handleUpdate}>
-      <h2>Edit Kanji</h2>
-
-     <div className="flex items-center justify-center gap-2 w-full">
-        <label htmlFor="character">Character : </label>
-        <input
-        type="text"
-        name="character"
-        placeholder="Character"
-        value={formData.character}
-        onChange={handleChange}
-      />
-
-     </div>
-     <div className="flex items-center justify-center gap-2 w-full">
-      <label htmlFor="meaning">Meaning : </label>
-      <input
-        type="text"
-        name="meaning"
-        placeholder="Meaning"
-        value={formData.meaning}
-        onChange={handleChange}
-      />
-      </div>
-      <div className="flex items-center justify-center gap-2 w-full">
-        <label htmlFor="onyomi">Onyomi : </label>
-      <input
-        type="text"
-        name="onyomi"
-        placeholder="Onyomi"
-        value={formData.onyomi}
-        onChange={handleChange}
-      />
-      </div>
-      <div className="flex items-center justify-center gap-2 w-full">
-        <label htmlFor="kunyomi">Kunyomi : </label>
-      <input
-        type="text"
-        name="kunyomi"
-        placeholder="Kunyomi"
-        value={formData.kunyomi}
-        onChange={handleChange}
-      />
-      </div>
-      <div className="flex items-center justify-center gap-2 w-full">
-        <label htmlFor="jlpt">JLPT Level : </label>
-      <input
-        type="number"
-        name="jlpt"
-        placeholder="JLPT Level"
-        value={formData.jlpt}
-        onChange={handleChange}
-      />
-       </div>
-      <h3>Example Words</h3>
-
-      {formData.exampleWords.map((example, index) => (
-        <div key={index} className="flex items-center justify-center gap-2 w-full">
+        className="flex flex-col items-center px-12 rounded-md shadow-md
+            bg-gray-700  max-w-sm  rounded-xl mt-12 mb-6"onSubmit={handleUpdate}   >
+        <h2 className="text-3xl font-bold text-center text-white px-20 ">
+          Edit Kanji
+        </h2>
           <input
             type="text"
-            name="word"
-            placeholder="Word"
-            value={example.word}
-            onChange={(e) => handleExampleChange(index, e)}
+            name="character"
+            placeholder="Character"
+            value={formData.character}
+            onChange={handleChange}
+            className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none"
           />
 
-          <input
-            type="text"
-            name="reading"
-            placeholder="Reading"
-            value={example.reading}
-            onChange={(e) => handleExampleChange(index, e)}
-          />
-
+       
           <input
             type="text"
             name="meaning"
             placeholder="Meaning"
-            value={example.meaning}
-            onChange={(e) => handleExampleChange(index, e)}
+            value={formData.meaning}
+            onChange={handleChange}
+            className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none"
           />
-        </div>
-      ))}
-      <br />
-      <br />
-      <button type="submit">
-        Update Kanji
-      </button>
+    
+           <input
+            type="text"
+            name="onyomi"
+            placeholder="Onyomi"
+            value={formData.onyomi}
+            onChange={handleChange}
+            className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none" 
+                 />
+      
+          <input
+            type="text"
+            name="kunyomi"
+            placeholder="Kunyomi"
+            value={formData.kunyomi}
+            onChange={handleChange}
+            className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none"/>
+          <input
+            type="number"
+            name="jlpt"
+            placeholder="JLPT Level"
+            value={formData.jlpt}
+            onChange={handleChange}
+            className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none"/>
+      
+        <h3 className="text-white">Example Words</h3>
+
+        {formData.exampleWords.map((example, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center gap-2 w-full"
+          >
+            <input
+              type="text"
+              name="word"
+              placeholder="Word"
+              value={example.word}
+              onChange={(e) => handleExampleChange(index, e)}
+              className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none"
+            />
+
+            <input
+              type="text"
+              name="reading"
+              placeholder="Reading"
+              value={example.reading}
+              onChange={(e) => handleExampleChange(index, e)}
+              className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none"
+            />
+
+            <input
+              type="text"
+              name="meaning"
+              placeholder="Meaning"
+              value={example.meaning}
+              onChange={(e) => handleExampleChange(index, e)}
+              className="mt-2 px-2  py-2 rounded-md w-full focus:outline-none shadow-lg focus:ring-2
+                 focus:ring-blue-500  border-none"
+            />
+          </div>
+        ))}
+        <button
+          type="submit"
+          className="px-4 py-2 bg-gradient-to-r from-pink-600 to-purple-600 text-white front-bold 
+              rounded-md overflow-hidden group cursor-pointer hover:scale-105 duration-300 border-none mx-2 pb-3 my-4"
+        >
+          Update Kanji
+        </button>
       </form>
     </div>
   );

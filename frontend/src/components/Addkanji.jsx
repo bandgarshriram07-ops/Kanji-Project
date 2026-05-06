@@ -1,7 +1,10 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { addKanji } from "../services/kanjiService";
 
 const AddKanji = () => {
+  const navigate = useNavigate();
   const [character, setCharacter] = useState({
     character: "",
     meaning: "",
@@ -16,7 +19,6 @@ const AddKanji = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const URL = `http://localhost:3000/api/kanji`;
     const payload = {
       ...character,
       jlpt: Number(character.jlpt),
@@ -32,21 +34,12 @@ const AddKanji = () => {
         : [],
     };
 
-    let response = await fetch(URL, {
-      method: "POST",
-      credentials : "include",
-      headers: {
-      credentials : "include",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
-    let jsonResponse = await response.json();
+    let response = await addKanji(payload);
+    console.log(response);
     if (!response.ok) {
-      alert(jsonResponse.message || "Failed to add kanji");
+      alert(response.message || "Failed to add kanji");
       return;
     }
-    console.log(jsonResponse);
     alert("Kanji added successfully");
     setCharacter({
       character: "",

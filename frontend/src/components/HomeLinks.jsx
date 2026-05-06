@@ -11,7 +11,7 @@ export const HomeLinks = () => {
         {title : "JLPT N5", path : "/kanji?jlpt=5",color : "bg-green-500",hover : "hover:bg-green-600"},
     ]
     return (
-        <div className="flex flex-col items-center justify-center gap-4">
+        <div className="flex flex-col items-center justify-center gap-4 pb-10">
             {HomeLinks.map((link) => (
                 <Link key={link.title} className={`${link.color}  text-white p-2 
                 rounded text-center shadow-md ${link.hover} hover:shadow-lg hover:text-lg sm:mx-auto 

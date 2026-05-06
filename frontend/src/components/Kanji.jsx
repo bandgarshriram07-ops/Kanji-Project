@@ -23,26 +23,29 @@ const Kanji = () => {
 
   return (
       <div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 
-      p-5 w-[100%]   rounded-lg"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-4
+        rounded-lg"
       >
         {kanji.map((k) => (
           <Link to={`/kanji/${k._id}`} key={k._id} className="no-underline text-inherit">
             <div
-              className="p-4 m-4 text-center 
-          h-[180px] flex flex-col justify-content items-center bg-sky-100 hover:bg-sky-200
-          cursor-pointer transition duration-300 ease-in-out rounded-lg shadow-lg" 
+              className="text-center bg-white
+               h-[250px] flex flex-col justify-content items-center 
+               cursor-pointer transition duration-300 ease-in-out rounded-lg shadow-lg" 
             >
-              <h3 className="text-3xl font-bold no-underline text-inherit">
+              <h3 className="text-5xl tex-gray-900 font-bold no-underline text-inherit">
                 {k.character}
               </h3>
-              <p className="mt-1 text-sm font-bold">
+              <p className="text-sm font-semibold">
+                Meaning : <span className="text-blue-700">{k.meaning}</span>
+                </p>
+              <p className=" text-sm font-semibold">
                 JLPT Level : <span className="text-blue-700">{k.jlpt}N</span>
               </p>
-              <p className="text-sm font-bold">Meaning : <span className="text-blue-700">{k.meaning}</span></p>
-            </div>
+                  <div className="w-10 h-1 rounded-full bg-blue-700 my-3"></div>
+                </div>
           </Link>
-        ))}s
+        ))}
       </div>
   );
 };

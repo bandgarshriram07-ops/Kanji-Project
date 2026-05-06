@@ -17,6 +17,25 @@ export const fetchKanjiById = async (id) => {
   }
 };
 
+export const addKanji = async (formData) => {
+  try {
+    let response = await fetch(`${BASE_URL}`, {
+      method: "POST",
+      credentials : "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await response.json();
+    return {ok : response.ok, data : data,message : response.message};
+  } catch (err) {
+    console.log(err);
+    return {ok : false, message : err, messages: err.message};
+    
+  }
+};
+
 export const updateKanji = async (id, formData) => {
   try {
     let response = await fetch(`${BASE_URL}/${id}`, {

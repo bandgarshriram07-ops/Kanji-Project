@@ -13,6 +13,7 @@ import Login from "./components/Login.jsx";
 import LogoutUser from "./components/LogoutUser";
 import { ProtectedRoutes } from "./components/ProtectedRoute.jsx"; 
 import { AuthProvider } from "./context/AuthContext";
+import Footer from "./pages/Footer";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/logout" element={<LogoutUser/>}/>
       </Routes>
+      <Footer />
       </AuthProvider>
     </BrowserRouter>
   );
