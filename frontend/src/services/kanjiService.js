@@ -1,6 +1,6 @@
 import { use } from "react";
 
-const BASE_URL = "https://kanji-project-703o.onrender.com/api";
+const BASE_URL = "https://kanji-project-703o.onrender.com/api/kanji";
 
 
 

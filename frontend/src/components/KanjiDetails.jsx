@@ -27,6 +27,7 @@ const KanjiDetails = () => {
   useEffect(() => {
     const fetchKanjiDetails = async () => {
       const data = await fetchKanjiById(id);
+      console.log(data);
       setKanji(data);
     };
     fetchKanjiDetails();
