@@ -13,7 +13,7 @@ dotenv.config();
 import { seedKanji, seedHiragana, seedKanakata } from './Data/initdata.js';
 
 app.use(cors({
-    origin : ["http://localhost:5173", "https://kanji-project-topaz.vercel.app"],
+    origin : ["http://localhost:5173", "https://kanji-project-topaz.vercel.app","https://kanji-project-d8kv.vercel.app"],
     credentials : true
 }));
 app.use(express.json());
