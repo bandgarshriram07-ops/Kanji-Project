@@ -1,6 +1,6 @@
 import { use } from "react";
 
-const BASE_URL = "https://kanji-project-d8kv.vercel.app/api";
+const BASE_URL = "https://kanji-project-703o.onrender.com/api";
 
 
 
@@ -69,7 +69,7 @@ export const deleteKanji = async (id) => {
 
 export const register = async (userData) => {
   try {
-    const REGISTER_URL = "https://kanji-project-d8kv.vercel.app/api/register";
+    const REGISTER_URL = "https://kanji-project-703o.onrender.com/api/register";
     let response = await fetch(REGISTER_URL, {
       method: "POST",
       credentials : "include",
@@ -87,7 +87,7 @@ export const register = async (userData) => {
 
 export const login = async (email,password) => {
   try {
-    let response = await fetch("https://kanji-project-d8kv.vercel.app/api/login", {
+    let response = await fetch("https://kanji-project-703o.onrender.com/api/login", {
       method: "POST",
       credentials : "include",
       body: JSON.stringify({email,password}),
@@ -105,7 +105,7 @@ export const login = async (email,password) => {
 
 export const logOutUser = async () => {
   try{
-    const res = await fetch("https://kanji-project-d8kv.vercel.app/api/logout",{
+    const res = await fetch("https://kanji-project-703o.onrender.com/api/logout",{
       method : "POST",
       credentials : "include"
     });
@@ -119,7 +119,7 @@ export const logOutUser = async () => {
 
 export const getKatakana = async () => {
   try{
-    const res = await fetch("https://kanji-project-d8kv.vercel.app/api/katakana",{
+    const res = await fetch("https://kanji-project-703o.onrender.com/api/katakana",{
       method : "GET",
       credentials : "include"
     });

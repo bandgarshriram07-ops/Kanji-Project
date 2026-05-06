@@ -5,7 +5,7 @@ import { HomeLinks } from "./HomeLinks";
 const Home = () => {
   return (
     <div className="">
-      <div className="flex justify-center align-center flex-col items-center gap-2 ">
+      <div className="flex justify-center align-center flex-col items-center gap-2 min-h-screen">
         <h3 className="text-2xl font-bold mt-2 text-center">
           日本語の漢字を学ぼう
         </h3>
