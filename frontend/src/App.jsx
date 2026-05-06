@@ -7,7 +7,7 @@ import DeleteKanji from "./components/DeleteButton";
 import Hiragana from "./components/Hiragana";
 import Katakana from "./components/Katakana";
 import Navbar from "./pages/Navbar";
-import AddKanji from "./components/AddKanji";
+import AddKanji from "./components/Addkanji";
 import Register from "./components/Register";
 import Login from "./components/Login";
 import LogoutUser from "./components/LogoutUser";
