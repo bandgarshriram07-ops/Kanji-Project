@@ -10,7 +10,7 @@ export  const AuthProvider = ({children}) => {
     const getUserData = async () => {
       
      try{
-      const res = await fetch("http://localhost:3000/api/me",{
+      const res = await fetch("https://kanji-project-703o.onrender.com/api/me",{
         method : "GET",
         credentials : "include"
       });

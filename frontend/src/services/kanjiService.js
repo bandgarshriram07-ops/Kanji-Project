@@ -1,6 +1,6 @@
 import { use } from "react";
 
-const BASE_URL = "http://localhost:3000/api/kanji";
+const BASE_URL = "https://kanji-project-703o.onrender.com/api";
 
 
 
@@ -69,7 +69,7 @@ export const deleteKanji = async (id) => {
 
 export const register = async (userData) => {
   try {
-    const REGISTER_URL = "http://localhost:3000/api/register";
+    const REGISTER_URL = "https://kanji-project-703o.onrender.com/api/register";
     let response = await fetch(REGISTER_URL, {
       method: "POST",
       credentials : "include",
@@ -87,7 +87,7 @@ export const register = async (userData) => {
 
 export const login = async (email,password) => {
   try {
-    let response = await fetch("http://localhost:3000/api/login", {
+    let response = await fetch("https://kanji-project-703o.onrender.com/api/login", {
       method: "POST",
       credentials : "include",
       body: JSON.stringify({email,password}),
@@ -105,7 +105,7 @@ export const login = async (email,password) => {
 
 export const logOutUser = async () => {
   try{
-    const res = await fetch("http://localhost:3000/api/logout",{
+    const res = await fetch("https://kanji-project-703o.onrender.com/api/logout",{
       method : "POST",
       credentials : "include"
     });

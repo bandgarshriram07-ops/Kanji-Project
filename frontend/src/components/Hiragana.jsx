@@ -5,7 +5,7 @@ const Hiragana = () => {
   const [hiragana, setHiragana] = useState([]);
 
   async function handleDta() {
-    const URL = `http://localhost:3000/api/hiragana`;
+    const URL = `https://kanji-project-703o.onrender.com/api/hiragana`;
     let response = await fetch(URL);
     let jsonResponse = await response.json();
     setHiragana(jsonResponse);

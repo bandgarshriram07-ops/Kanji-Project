@@ -8,9 +8,9 @@ const Kanji = () => {
   let [kanji, setKanji] = useState([]);
 
   let fetchApi = async (Level ) => {
-      let URL = "http://localhost:3000/api/kanji";
+      let URL = "https://kanji-project-703o.onrender.com/api/kanji";
       if (Level) {
-         URL = `http://localhost:3000/api/kanji?jlpt=${Level}`;
+         URL = `https://kanji-project-703o.onrender.com/api/kanji?jlpt=${Level}`;
       }
       fetch(URL)
         .then((res) => res.json())
