@@ -19,7 +19,6 @@ function App() {
   return (
     <BrowserRouter >
       <AuthProvider>
-      <div className="flex flex-col  min-h-screen">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -35,7 +34,6 @@ function App() {
         <Route path="/logout" element={<LogoutUser/>}/>
       </Routes>
       <Footer />
-      </div>
       </AuthProvider>
     </BrowserRouter>
   );

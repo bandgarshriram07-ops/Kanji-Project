@@ -8,14 +8,15 @@ const Kanji = () => {
   let [kanji, setKanji] = useState([]);
 
   let fetchApi = async (Level ) => {
-      let URL = "https://kanji-project-703o.onrender.com/api/api/kanji";
+      let URL = "https://kanji-project-703o.onrender.com/api/kanji";
       if (Level) {
          URL = `https://kanji-project-703o.onrender.com/api/kanji?jlpt=${Level}`;
       }
-      fetch(URL)
-        .then((res) => res.json())
-        .then((data) => setKanji(data));
+      let response = await fetch(URL);
+      const data = await response.json();
+      setKanji(data);
     };
+
   
     useEffect(() => {
       fetchApi(level );
