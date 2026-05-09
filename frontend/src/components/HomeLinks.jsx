@@ -3,7 +3,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 export const HomeLinks = () => {
     const HomeLinks = [
-        {title : "All Kanji", path : "/kanji",color : "bg-gray-500",hover : "hover:bg-red-600"},
+        {title : "All Kanji", path : "/kanji",color : "bg-orange-500",hover : "hover:bg-orange-600"},
         {title : "JLPT N1", path : "/kanji?jlpt=1",color : "bg-red-500",hover : "hover:bg-red-600"},
         {title : "JLPT N2", path : "/kanji?jlpt=2",color : "bg-orange-500",hover : "hover:bg-orange-600"},
         {title : "JLPT N3", path : "/kanji?jlpt=3",color : "bg-yellow-500",hover : "hover:bg-yellow-600"},
@@ -15,7 +15,7 @@ export const HomeLinks = () => {
             {HomeLinks.map((link) => (
                 <Link key={link.title} className={`${link.color}  text-white p-2 
                 rounded text-center shadow-md ${link.hover} hover:shadow-lg hover:text-lg sm:mx-auto 
-                transition duration-300`} to={link.path}>
+                transition duration-300 no-underline text-inherit`} to={link.path}>
                     {link.title}
                     <ArrowForwardIosIcon className="ml-55" />
                 </Link>

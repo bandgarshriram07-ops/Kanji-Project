@@ -28,12 +28,12 @@ const Navbar = () => {
             <Link to="/register" className="   px-4 no-underline hover:text-lg  text-inherit font-semibold">Register</Link>
             {user && <Link to="/logout"  className="hover:text-lg  no-underline text-inherit font-semibold">Logout</Link>}
         </div>
-        <div className=" flex items-center ml-auto md:mr-10">
+        <div className=" flex items-center ml-auto md:mr-10 text-white">
          <DarkModeButton />
-         <Link to="/login" className="bg-blue-500 text-white px-4 py-2 font-semibold
+         <Link to="/login" className="bg-blue-500 text-white px-4 md:py-2 py-1 font-semibold
             rounded-full hover:bg-blue-600 no-underline text-inherit text-[13px]">Login</Link>
-              <button className="px-4 text-2xl leading-none block cursor-pointer md:hidden 
-                 border-none outline-none bg-purple-500 font-bold hight-line-2xl  dark:text-white dark:bg-gray-700" onClick={() => setOpen(!open)}>
+              <button className="  leading-none block cursor-pointer md:hidden 
+                 border-none outline-none bg-purple-500 text-lg  text-white dark:bg-gray-700" onClick={() => setOpen(!open)}>
                 <ListIcon  />
              </button>
         </div>
