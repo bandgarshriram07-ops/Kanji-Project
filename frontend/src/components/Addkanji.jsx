@@ -37,6 +37,7 @@ const AddKanji = () => {
     let response = await addKanji(payload);
     console.log(response);
     if (!response.ok) {
+      console.log(response.data);
         alert(response.message || "Failed to add kanji");
       return;
     }
