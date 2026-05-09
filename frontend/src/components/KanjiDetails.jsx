@@ -38,7 +38,7 @@ const KanjiDetails = () => {
       {kanji && (
         <div
           className="flex flex-col items-center w-[18rem]  md:w-[24rem] h-[35rem]
-           rounded-lg mx-auto max-w-md shadow-lg bg-white/80 backdrop-blur-lg " >
+           rounded-lg mx-auto max-w-md shadow-lg bg-white/80 backdrop-blur-lg text-black  " >
             <h1 className="md:text-md text-xl font-bold ">Kanji</h1>
           <h2 className="text-6xl font-bold mb-8">{kanji.character} </h2>
           <p className="font-bold">JLPT Level:<span  className="text-blue-700"> {kanji.jlpt}N</span></p>

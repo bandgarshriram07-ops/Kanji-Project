@@ -25,14 +25,14 @@ const Kanji = () => {
   return (
       <div
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 p-4
-        rounded-lg"
+        rounded-lg text-black dark:text-white "
       >
         {kanji.map((k) => (
           <Link to={`/kanji/${k._id}`} key={k._id} className="no-underline text-inherit">
             <div
-              className="text-center bg-white
+              className="text-center  text-black
                h-[250px] flex flex-col justify-content items-center 
-               cursor-pointer transition duration-300 ease-in-out rounded-lg shadow-lg" 
+               cursor-pointer transition duration-300 ease-in-out rounded-lg shadow-lg  bg-white/80" 
             >
               <h3 className="text-5xl tex-gray-900 font-bold no-underline text-inherit">
                 {k.character}

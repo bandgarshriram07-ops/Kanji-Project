@@ -64,4 +64,12 @@ export const logout = async (req,res) => {
     }catch(err){
         res.status(500).json({message: err.message});
     }
-}
+};
+
+export const healthCheck = async (req,res) => {
+    try{
+        res.json({message : "Health check passed"});
+    }catch(err){
+        res.status(500).json({message: err.message});
+    }
+};
