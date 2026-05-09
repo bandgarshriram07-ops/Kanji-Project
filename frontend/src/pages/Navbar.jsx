@@ -25,6 +25,7 @@ const Navbar = () => {
             <Link to="/katakana" className=" no-underline text-inherit text-lg px-4 font-semibold">Katakana</Link>
             <Link to="/addKanji" className="  no-underline text-inherit font-semibold">Add Kanji</Link>
             <Link to="/register" className="  text-lg px-4 no-underline text-inherit font-semibold">Register</Link>
+            {user && <Link to="/logout"  className="hover:text-gray-500  no-underline text-inherit font-semibold">Logout</Link>}
         </div>
         <div className=" flex items-center ml-auto md:mr-8">
          <Link to="/login" className="bg-blue-500 text-white px-4 py-2
@@ -44,7 +45,7 @@ const Navbar = () => {
             <Link to="/katakana" className="hover:text-gray-500 block no-underline text-inherit">Katakana</Link>
             <Link to="/addKanji" className="hover:text-gray-500 block no-underline text-inherit">Add Kanji</Link>
             <Link to="/register" className="hover:text-gray-500 block no-underline text-inherit">Register</Link>
-            <Link to="/logout"   className="hover:text-gray-500 block no-underline text-inherit">Logout</Link>
+           {user && <Link to="/logout"   className="hover:text-gray-500 block no-underline text-inherit">Logout</Link>}
           </div>
         </div>
     
