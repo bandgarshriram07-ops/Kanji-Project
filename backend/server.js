@@ -22,9 +22,7 @@ app.use(cookieParser());
 
 mongoose.connect(process.env.MONGODB_URI)
 .then(() =>{console.log('MongoDB connected')
-        //   seedKanji();
-        // seedHiragana();
-        // seedKanakata()
+       
 })
 .catch(err => console.log(err));
 

@@ -18,7 +18,7 @@ import Katakana from "../models/katakana.js"
 export const seedKanji = async () => {
     try {
         await Kanji.deleteMany({});
-        await Kanji.insertMany(KanjiData);
+        await Kanji.insertMany(KanjiData );
         console.log('Kanji data seeded successfully');
     }   catch (err) { 
         console.log('Error seeding kanji data:', err.message);

@@ -5,7 +5,7 @@ import Kanji from '../models/Kanji.js';
   const verifyToken = (req,res,next) => {
     const token = req.cookies.token;
     if(!token){
-        return res.status(401).json({message: "Unauthorized1"});
+        return res.status(401).json({message: "Unauthorized 123"});
     }
     try{
         const decoded = jwt.verify(token, process.env.MY_SECRET_KEY);

@@ -34,18 +34,18 @@ const KanjiDetails = () => {
   }, []);
 
   return (
-    <div className="py-8 "> 
+    <div className="py-6">
       {kanji && (
         <div
-          className="flex flex-col items-center w-[15rem]  md:w-[20rem] h-[35rem]
+          className="flex flex-col items-center w-[18rem]  md:w-[24rem] h-[35rem]
            rounded-lg mx-auto max-w-md shadow-lg bg-white/80 backdrop-blur-lg " >
             <h1 className="md:text-md text-xl font-bold ">Kanji</h1>
           <h2 className="text-6xl font-bold mb-8">{kanji.character} </h2>
-          <p className="font-bold">JLPT Level:<span> {kanji.jlpt}</span> N</p>
+          <p className="font-bold">JLPT Level:<span  className="text-blue-700"> {kanji.jlpt}N</span></p>
           {/* Add more details as needed */}
-          <p className="font-bold">Kanji meaning: <span>{kanji.meaning}</span></p>
-          <p className="font-bold">Onyomi: {kanji.onyomi}</p>
-          <p className="font-bold">Kunyomi: {kanji.kunyomi}</p>
+          <p className="font-bold">Kanji meaning: <span  className="text-blue-700">{kanji.meaning}</span></p>
+          <p className="font-bold">Onyomi:<sapn className="text-blue-700">{kanji.onyomi}</sapn></p>
+          <p className="font-bold">Kunyomi: <sapn className="text-blue-700">{kanji.kunyomi}</sapn></p>
           {kanji.exampleWords && kanji.exampleWords.length > 0 && (
             <div>
               <ul>

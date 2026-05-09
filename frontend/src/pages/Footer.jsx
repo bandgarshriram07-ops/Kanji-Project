@@ -6,7 +6,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 
 const Footer = () => {
   return (
-    <footer className='bg-gray-300 text-black flex flex-col items-center justify-center'>
+    <footer className='bg-gray-300 text-black flex flex-col items-center justify-center py-4 mt-auto'>
         <p className='text-center text-sm'>© 2022 Copyright: Kanji Finder</p>
         <div className='flex flex-row gap-4 my-4 text-md font-semibold cursor-pointer'>
             <GitHubIcon />

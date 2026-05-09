@@ -57,7 +57,288 @@ const kanjiData = [
 { character:"資", meaning:"resource", onyomi:"シ", kunyomi:"", jlpt:1, exampleWords:[{word:"資源",reading:"しげん",meaning:"resource"}]},
 { character:"源", meaning:"origin", onyomi:"ゲン", kunyomi:"みなもと", jlpt:1, exampleWords:[{word:"資源",reading:"しげん",meaning:"resource"}]},
 { character:"構", meaning:"structure", onyomi:"コウ", kunyomi:"かまう", jlpt:1, exampleWords:[{word:"構造",reading:"こうぞう",meaning:"structure"}]},
-{ character:"導", meaning:"guide", onyomi:"ドウ", kunyomi:"みちびく", jlpt:1, exampleWords:[{word:"指導",reading:"しどう",meaning:"guidance"}]}
+{ character:"導", meaning:"guide", onyomi:"ドウ", kunyomi:"みちびく", jlpt:1, exampleWords:[{word:"指導",reading:"しどう",meaning:"guidance"}]},
+{
+      "character": "日",
+      "meaning": "sun, day",
+      "onyomi": "ニチ, ジツ",
+      "kunyomi": "ひ, か",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "日本",
+          "reading": "にほん",
+          "meaning": "Japan"
+        }
+      ]
+    },
+    {
+      "character": "人",
+      "meaning": "person",
+      "onyomi": "ジン, ニン",
+      "kunyomi": "ひと",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "日本人",
+          "reading": "にほんじん",
+          "meaning": "Japanese person"
+        }
+      ]
+    },
+    {
+      "character": "月",
+      "meaning": "moon, month",
+      "onyomi": "ゲツ, ガツ",
+      "kunyomi": "つき",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "月曜日",
+          "reading": "げつようび",
+          "meaning": "Monday"
+        }
+      ]
+    },
+    {
+      "character": "火",
+      "meaning": "fire",
+      "onyomi": "カ",
+      "kunyomi": "ひ",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "火山",
+          "reading": "かざん",
+          "meaning": "volcano"
+        }
+      ]
+    },
+    {
+      "character": "水",
+      "meaning": "water",
+      "onyomi": "スイ",
+      "kunyomi": "みず",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "水曜日",
+          "reading": "すいようび",
+          "meaning": "Wednesday"
+        }
+      ]
+    },
+    {
+      "character": "木",
+      "meaning": "tree, wood",
+      "onyomi": "モク, ボク",
+      "kunyomi": "き",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "木曜日",
+          "reading": "もくようび",
+          "meaning": "Thursday"
+        }
+      ]
+    },
+    {
+      "character": "金",
+      "meaning": "gold, money",
+      "onyomi": "キン, コン",
+      "kunyomi": "かね",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "金曜日",
+          "reading": "きんようび",
+          "meaning": "Friday"
+        }
+      ]
+    },
+    {
+      "character": "土",
+      "meaning": "earth, soil",
+      "onyomi": "ド, ト",
+      "kunyomi": "つち",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "土曜日",
+          "reading": "どようび",
+          "meaning": "Saturday"
+        }
+      ]
+    },
+    {
+      "character": "山",
+      "meaning": "mountain",
+      "onyomi": "サン",
+      "kunyomi": "やま",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "富士山",
+          "reading": "ふじさん",
+          "meaning": "Mount Fuji"
+        }
+      ]
+    },
+    {
+      "character": "川",
+      "meaning": "river",
+      "onyomi": "セン",
+      "kunyomi": "かわ",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "川口",
+          "reading": "かわぐち",
+          "meaning": "river mouth"
+        }
+      ]
+    },
+    {
+      "character": "田",
+      "meaning": "rice field",
+      "onyomi": "デン",
+      "kunyomi": "た",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "田中",
+          "reading": "たなか",
+          "meaning": "Tanaka"
+        }
+      ]
+    },
+    {
+      "character": "口",
+      "meaning": "mouth",
+      "onyomi": "コウ, ク",
+      "kunyomi": "くち",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "入口",
+          "reading": "いりぐち",
+          "meaning": "entrance"
+        }
+      ]
+    },
+    {
+      "character": "目",
+      "meaning": "eye",
+      "onyomi": "モク",
+      "kunyomi": "め",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "目的",
+          "reading": "もくてき",
+          "meaning": "purpose"
+        }
+      ]
+    },
+    {
+      "character": "耳",
+      "meaning": "ear",
+      "onyomi": "ジ",
+      "kunyomi": "みみ",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "耳鼻科",
+          "reading": "じびか",
+          "meaning": "ear, nose, throat department"
+        }
+      ]
+    },
+    {
+      "character": "手",
+      "meaning": "hand",
+      "onyomi": "シュ",
+      "kunyomi": "て",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "上手",
+          "reading": "じょうず",
+          "meaning": "skillful"
+        }
+      ]
+    },
+    {
+      "character": "足",
+      "meaning": "foot, leg",
+      "onyomi": "ソク",
+      "kunyomi": "あし",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "足音",
+          "reading": "あしおと",
+          "meaning": "footsteps"
+        }
+      ]
+    },
+    {
+      "character": "力",
+      "meaning": "power",
+      "onyomi": "リョク, リキ",
+      "kunyomi": "ちから",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "電力",
+          "reading": "でんりょく",
+          "meaning": "electric power"
+        }
+      ]
+    },
+    {
+      "character": "男",
+      "meaning": "man",
+      "onyomi": "ダン, ナン",
+      "kunyomi": "おとこ",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "男の子",
+          "reading": "おとこのこ",
+          "meaning": "boy"
+        }
+      ]
+    },
+    {
+      "character": "女",
+      "meaning": "woman",
+      "onyomi": "ジョ, ニョ",
+      "kunyomi": "おんな",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "女性",
+          "reading": "じょせい",
+          "meaning": "woman, female"
+        }
+      ]
+    },
+    {
+      "character": "子",
+      "meaning": "child",
+      "onyomi": "シ, ス",
+      "kunyomi": "こ",
+      "jlpt": 5,
+      "exampleWords": [
+        {
+          "word": "子供",
+          "reading": "こども",
+          "meaning": "child"
+        }
+      ]
+    }
+  
 ];
 
 export default kanjiData;

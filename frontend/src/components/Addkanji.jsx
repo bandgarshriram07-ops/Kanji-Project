@@ -37,7 +37,7 @@ const AddKanji = () => {
     let response = await addKanji(payload);
     console.log(response);
     if (!response.ok) {
-      alert(response.message || "Failed to add kanji");
+        alert(response.message || "Failed to add kanji");
       return;
     }
     alert("Kanji added successfully");
@@ -51,11 +51,11 @@ const AddKanji = () => {
     });
   };
   return (
-    <div className="flex flex-col items-center justify-center gap-4 min-h-screen ">
+    <div className="flex flex-col items-center justify-center  ">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col items-center 
-        justify-center gap-4 bg-gray-700 p-8 rounded-md shadow-md w-[40%] mx-auto rounded-xl  "
+        justify-center gap-4 bg-gray-700 p-8 rounded-md shadow-md w-[70%] mt-6 rounded-xl  "
       >
         <div className="flex flex-col items-center justify-center gap-4">
           <input
