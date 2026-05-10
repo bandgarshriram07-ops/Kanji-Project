@@ -72,3 +72,21 @@ export const updateKanji = async (req,res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+export const searchKanji = async (req,res) => {
+    try{
+        const {query} = req.query.q;
+        const kanji = await Kanji.find({$or :
+            [{character : {$regex : query, $options : "i"}},
+            {meaning : {$regex : query, $options : "i"}},
+            {onyomi : {$regex : query, $options : "i"}},
+            {onyomi : {$regex : query, $options : "i"}},
+            {jlpt : {$regex : query, $options : "i"}},
+        ]
+        });
+        res.json(kanji);
+
+    }catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
