@@ -11,18 +11,21 @@ import Footer from "./pages/Footer";
 import AddKanji from "./components/Addkanji";
 import Register from "./components/Register";
 import Login from "./components/Login";
+import ShowSearchKanji from "./components/ShowSearchKanji";
 import LogoutUser from "./components/LogoutUser";
 import { ProtectedRoutes } from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
+import { useState } from "react";
 
 function App() {
+  const [kanjiList, setKanjiList] = useState([]);
   return (
     <BrowserRouter>
       <AuthProvider>
         <div className="flex flex-col min-h-screen bg-gradient-to-r 
         from-[#fbc2eb] to-[#a6c1ee] dark:bg-gradient-to-r dark:from-gray-900
         dark:to-gray-800 text-white">
-          <Navbar />
+          <Navbar setKanjiList={setKanjiList}/>
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<Home />} />
@@ -50,6 +53,7 @@ function App() {
               <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
               <Route path="/logout" element={<LogoutUser />} />
+              <Route path="/search" element={<ShowSearchKanji kanjiList={kanjiList} />} />
             </Routes>
           </main>
           <Footer />

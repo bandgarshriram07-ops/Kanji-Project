@@ -1,17 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { getSearchKanji } from "../services/kanjiService";
+import { useNavigate } from "react-router-dom";
 
-const SearchBox = () => {
+const SearchBox = ({setKanjiList}) => {
+    const navigate = useNavigate();
   const [search, setSearch] = useState("");
-  const [kanjiList, setKanjiList] = useState([]);
+ 
+
+  const getKanji = async () => {
+    const res = await getSearchKanji(search);
+    console.log(res);
+    console.log(res.data);
+    return res;
+  }
 
   const handleSearch = async () => {
     try {
-      const res = await getSearchKanji(search);
-      setKanjiList(res);
-      if(!res.ok){
-        alert(res.message);
-      }
+      const res = await getKanji();
+      setKanjiList(res.data);
+      setSearch("");
+      navigate("/search");
     } catch (err) {
       alert(err);
     }
@@ -34,34 +42,7 @@ const SearchBox = () => {
           Search
         </button>
       </div>
-      {kanjiList.map((kanji, index) => (
-        <div
-          key={index}
-          className="flex justify-between items-center gap-2 p-2 border-b border-gray-200 dark:border-gray-700"
-        >
-          <div className="flex flex-col">
-            <h2 className="text-6xl font-bold mb-8">{kanji.character} </h2>
-            <p className="font-bold">
-              JLPT Level:<span className="text-blue-700"> {kanji.jlpt}N</span>
-            </p>
-            {/* Add more details as needed */}
-            <p className="font-bold">
-              Kanji meaning:{" "}
-              <span className="text-blue-700">{kanji.meaning}</span>
-            </p>
-            <p className="font-bold">
-              Onyomi:<sapn className="text-blue-700">{kanji.onyomi}</sapn>
-            </p>
-            <p className="font-bold">
-              Kunyomi: <sapn className="text-blue-700">{kanji.kunyomi}</sapn>
-            </p>
-            <p className="font-bold">
-              Kunyomi: <sapn className="text-blue-700">{kanji.jlpt}</sapn>
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
+     </div>
   );
 };
 

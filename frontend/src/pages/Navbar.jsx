@@ -7,11 +7,9 @@ import DarkModeButton from "../components/DarkModeButton";
 import SearchBox from "../components/SearchBox";
 
 
-const Navbar = () => {
+const Navbar = ({setKanjiList}) => {
    const [open, setOpen] = useState(false);
    const {user} = useAuth();   
-
-   
   return (
      <nav className="bg-purple-500 dark:bg-gray-700 text-white sticky top-0 z-50">
      
@@ -27,7 +25,7 @@ const Navbar = () => {
             <Link to="/katakana" className=" no-underline text-inherit hover:text-lg   px-4 font-semibold">Katakana</Link>
             <Link to="/addKanji" className="  no-underline text-inherit hover:text-lg font-semibold">Add Kanji</Link>
             <Link to="/register" className="   px-4 no-underline hover:text-lg  text-inherit font-semibold">Register</Link>
-            <SearchBox />
+            <SearchBox  setKanjiList={setKanjiList}/>
             {user && <Link to="/logout"  className="hover:text-lg  no-underline text-inherit font-semibold">Logout</Link>}
         </div>
         <div className=" flex items-center ml-auto md:mr-10 text-white">
@@ -43,6 +41,7 @@ const Navbar = () => {
            {/* response nav */}
           <div className={`${open ? "block" : "hidden"} md:hidden  bg-gray-200 space-y-2 pb-3`}>
           <div className="flex flex-col gap-4 p-4 text-black">
+            <SearchBox  setKanjiList={setKanjiList}/>
             <Link to="/" className=" hover:text-gray-500 block no-underline text-inherit">Home</Link>
             <Link to="/kanji" className="hover:text-gray-500  block no-underline text-inherit">Kanji</Link>
             <Link to="/hiragana" className="hover:text-gray-500 block no-underline text-inherit">Hiragana</Link>

@@ -138,7 +138,7 @@ export const getSearchKanji = async (query) => {
       credentials : "include"
     });
     const data = await res.json();
-    return {ok : response.ok, data : data,message : response.message};
+    return {ok : res.ok, data : data,message : data.message};
 
   }catch(err){
     console.log(err);
