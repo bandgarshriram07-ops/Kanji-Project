@@ -129,4 +129,18 @@ export const getKatakana = async () => {
   }catch(err){
     console.log(err);
   }
-}
+};
+
+export const getSearchKanji = async (query) => {
+  try{
+    const res = await fetch(`https://kanji-project-703o.onrender.com/api/search?q=${query}`,{
+      method : "GET",
+      credentials : "include"
+    });
+    const data = await res.json();
+    return {ok : response.ok, data : data,message : response.message};
+
+  }catch(err){
+    console.log(err);
+  }
+};

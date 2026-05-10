@@ -4,6 +4,7 @@ import logo from "../assets/Logo.jpg";
 import { useAuth } from "../context/AuthContext";
 import ListIcon from '@mui/icons-material/List';
 import DarkModeButton from "../components/DarkModeButton";
+import SearchBox from "../components/SearchBox";
 
 
 const Navbar = () => {
@@ -19,13 +20,14 @@ const Navbar = () => {
          <Link to="/"><img src={logo} alt="logo" className="w-12 h-12 rounded-full" /></Link>
          <Link to="/kanji" className="no-underline text-inherit"><h2 className=" md:hidden text-2xl font-bold text-white ml-16">Kanji </h2></Link>
         </div>
-         <div className="hidden md:block">
+         <div className="hidden md:flex items-center gap-2 ">
             <Link to="/" className="  px-4 no-underline hover:text-lg  text-inherit text-white font-semibold">Home</Link>
             <Link to="/kanji" className="  px-4 no-underline hover:text-lg  text-inherit font-semibold">Kanji</Link>
             <Link to="/hiragana" className=" no-underline text-inherit hover:text-lg   px-4 font-semibold">Hiragana</Link>
             <Link to="/katakana" className=" no-underline text-inherit hover:text-lg   px-4 font-semibold">Katakana</Link>
             <Link to="/addKanji" className="  no-underline text-inherit hover:text-lg font-semibold">Add Kanji</Link>
             <Link to="/register" className="   px-4 no-underline hover:text-lg  text-inherit font-semibold">Register</Link>
+            <SearchBox />
             {user && <Link to="/logout"  className="hover:text-lg  no-underline text-inherit font-semibold">Logout</Link>}
         </div>
         <div className=" flex items-center ml-auto md:mr-10 text-white">

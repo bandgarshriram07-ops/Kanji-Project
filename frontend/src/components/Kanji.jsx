@@ -43,7 +43,6 @@ const Kanji = () => {
               <p className=" text-sm font-semibold">
                 JLPT Level : <span className="text-blue-700">{k.jlpt}N</span>
               </p>
-                  <div className="w-10 h-1 rounded-full bg-blue-700 my-3"></div>
                 </div>
           </Link>
         ))}

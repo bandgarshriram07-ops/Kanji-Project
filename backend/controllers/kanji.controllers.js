@@ -75,12 +75,10 @@ export const updateKanji = async (req,res) => {
 
 export const searchKanji = async (req,res) => {
     try{
-        const {query} = req.query.q;
+        const query = req.query.q;
         const kanji = await Kanji.find({$or :
             [{character : {$regex : query, $options : "i"}},
             {meaning : {$regex : query, $options : "i"}},
-            {onyomi : {$regex : query, $options : "i"}},
-            {onyomi : {$regex : query, $options : "i"}},
         ]
         });
         res.json(kanji);
