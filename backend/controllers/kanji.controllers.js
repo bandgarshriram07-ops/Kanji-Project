@@ -81,7 +81,6 @@ export const searchKanji = async (req,res) => {
             {meaning : {$regex : query, $options : "i"}},
             {onyomi : {$regex : query, $options : "i"}},
             {onyomi : {$regex : query, $options : "i"}},
-            {jlpt : {$regex : query, $options : "i"}},
         ]
         });
         res.json(kanji);
