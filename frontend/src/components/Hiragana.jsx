@@ -3,9 +3,10 @@ import { useState, useEffect } from "react";
 
 const Hiragana = () => {
   const [hiragana, setHiragana] = useState([]);
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
   async function handleDta() {
-    const URL = `https://kanji-project-703o.onrender.com/api/hiragana`;
+    const URL = `${API_BASE}/api/hiragana`;
     let response = await fetch(URL);
     let jsonResponse = await response.json();
     setHiragana(jsonResponse);

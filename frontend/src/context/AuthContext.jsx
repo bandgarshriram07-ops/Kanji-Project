@@ -8,9 +8,9 @@ export  const AuthProvider = ({children}) => {
 
    useEffect(() => {
     const getUserData = async () => {
-      
+      const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
      try{
-      const res = await fetch("https://kanji-project-703o.onrender.com/api/me",{
+      const res = await fetch(`${API_BASE}/api/me`,{
         method : "GET",
         credentials : "include"
       });

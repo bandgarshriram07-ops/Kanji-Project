@@ -8,6 +8,7 @@ const KanjiWithLoader = () => {
   const [error, setError] = useState(null);
 
   const level = searchParams.get("jlpt");
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
   useEffect(() => {
     const fetchKanjiData = async () => {
@@ -15,9 +16,9 @@ const KanjiWithLoader = () => {
         setLoading(true);
         setError(null);
 
-        let URL = "https://kanji-project-703o.onrender.com/api/kanji";
+        let URL = `${API_BASE}/api/kanji`;
         if (level) {
-          URL = `https://kanji-project-703o.onrender.com/api/kanji?jlpt=${level}`;
+          URL = `${API_BASE}/api/kanji?jlpt=${level}`;
         }
 
         const response = await fetch(URL);

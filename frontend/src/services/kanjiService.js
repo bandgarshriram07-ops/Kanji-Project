@@ -1,6 +1,7 @@
 import { use } from "react";
 
-const BASE_URL = "https://kanji-project-703o.onrender.com/api/kanji";
+const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const BASE_URL = `${API_BASE}/api/kanji`;
 
 
 
@@ -69,7 +70,7 @@ export const deleteKanji = async (id) => {
 
 export const register = async (userData) => {
   try {
-    const REGISTER_URL = "https://kanji-project-703o.onrender.com/api/register";
+    const REGISTER_URL = `${API_BASE}/api/register`;
     let response = await fetch(REGISTER_URL, {
       method: "POST",
       credentials : "include",
@@ -87,7 +88,7 @@ export const register = async (userData) => {
 
 export const login = async (email,password) => {
   try {
-    let response = await fetch("https://kanji-project-703o.onrender.com/api/login", {
+    let response = await fetch(`${API_BASE}/api/login`, {
       method: "POST",
       credentials : "include",
       body: JSON.stringify({email,password}),
@@ -105,7 +106,7 @@ export const login = async (email,password) => {
 
 export const logOutUser = async () => {
   try{
-    const res = await fetch("https://kanji-project-703o.onrender.com/api/logout",{
+    const res = await fetch(`${API_BASE}/api/logout`,{
       method : "POST",
       credentials : "include"
     });
@@ -119,7 +120,7 @@ export const logOutUser = async () => {
 
 export const getKatakana = async () => {
   try{
-    const res = await fetch("https://kanji-project-703o.onrender.com/api/katakana",{
+    const res = await fetch(`${API_BASE}/api/katakana`,{
       method : "GET",
       credentials : "include"
     });
@@ -133,7 +134,7 @@ export const getKatakana = async () => {
 
 export const getSearchKanji = async (query) => {
   try{
-    const res = await fetch(`https://kanji-project-703o.onrender.com/api/search?q=${query}`,{
+    const res = await fetch(`${API_BASE}/api/search?q=${query}`,{
       method : "GET",
       credentials : "include"
     });
