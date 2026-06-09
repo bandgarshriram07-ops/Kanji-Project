@@ -8,7 +8,7 @@ const Kanji = () => {
   let [kanji, setKanji] = useState([]);
 
   let fetchApi = async (Level ) => {
-      const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+      const API_BASE = "https://kanji-project-vuuf.onrender.com" || "http://localhost:3000";
       let URL = `${API_BASE}/api/kanji`;
       if (Level) {
          URL = `${API_BASE}/api/kanji?jlpt=${Level}`;
