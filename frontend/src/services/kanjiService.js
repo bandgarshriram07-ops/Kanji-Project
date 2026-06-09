@@ -1,6 +1,6 @@
 import { use } from "react";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const API_BASE = "https://kanji-project-vuuf.onrender.com" || "http://localhost:3000";
 const BASE_URL = `${API_BASE}/api/kanji`;
 
 
