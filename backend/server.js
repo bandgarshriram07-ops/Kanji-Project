@@ -9,7 +9,7 @@ import  getHiragana from "./route/hiragana.route.js";
 import getKanakata from "./route/katakana.route.js";
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-dotenv.config();
+dotenv.config({ path: './.env' });
 import { seedKanji, seedHiragana, seedKanakata } from './Data/initdata.js';
 
 app.use(cors({

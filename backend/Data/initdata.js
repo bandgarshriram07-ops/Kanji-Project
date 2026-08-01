@@ -5,15 +5,17 @@ import hiraganaData from "./hiraganaData.js"
 import Hiragana from "../models/hiragana.js"
 import KatakanaData from "./katakanaData.js"
 import Katakana from "../models/katakana.js"
+import dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
 
 
-// mongoose.connect(process.env.MONGODB_URI)
-//     .then(() =>{ console.log('MongoDB connected'); 
-//         seedKanji();
-//         seedHiragana();
-//         seedKanakata();
-//     } )
-//     .catch(err => console.log(err)); 
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() =>{ console.log('MongoDB connected'); 
+        // seedKanji();
+        // seedHiragana();
+        // seedKanakata();
+    } )
+    .catch(err => console.log(err)); 
 
 export const seedKanji = async () => {
     try {
