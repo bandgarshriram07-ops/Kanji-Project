@@ -12,7 +12,7 @@ const KanjiRefactored = () => {
   const level = searchParams.get("jlpt");
 
   // Build URL based on level parameter
-  const API_BASE = "https://kanji-project-vuuf.onrender.com" || "http://localhost:3000";
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:3000";
   const baseURL = `${API_BASE}/api/kanji`;
   const url = level ? `${baseURL}?jlpt=${level}` : baseURL;
 

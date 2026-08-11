@@ -6,16 +6,18 @@ import Hiragana from "../models/hiragana.js"
 import KatakanaData from "./katakanaData.js"
 import Katakana from "../models/katakana.js"
 import dotenv from 'dotenv';
-dotenv.config({ path: '../.env' });
 
+dotenv.config({ path: './.env' });
 
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() =>{ console.log('MongoDB connected'); 
-        // seedKanji();
-        // seedHiragana();
-        // seedKanakata();
-    } )
-    .catch(err => console.log(err)); 
+const mongoUri = process.env.MONGODB_URI;
+
+if (mongoUri) {
+    mongoose.connect(mongoUri)
+        .then(() => { console.log('MongoDB connected'); })
+        .catch(err => console.log('MongoDB connection error from initdata:', err.message));
+} else {
+    console.warn('MongoDB URI is not configured in initdata.js.');
+}
 
 export const seedKanji = async () => {
     try {
