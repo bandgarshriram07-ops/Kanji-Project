@@ -34,10 +34,12 @@ export const login = async (req,res) => {
         }
         const cookie = generateToken(user);
 
+        const secureCookie = process.env.NODE_ENV === 'production' || req.secure || req.headers['x-forwarded-proto'] === 'https';
+
         res.cookie("token",cookie,{
             httpOnly: true,
-            sameSite: "none",
-            secure: true,
+            sameSite: secureCookie ? 'none' : 'lax',
+            secure: secureCookie,
             maxAge: 1*60*60*24*30
         });
         res.json({message : "User logged in successfully", user : {id : user._id, email : user.email}});

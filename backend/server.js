@@ -4,8 +4,13 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-dotenv.config({ path: './.env' });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const mongoUri = process.env.MONGODB_URI;
 const jwtSecret = process.env.MY_SECRET_KEY;
@@ -26,10 +31,35 @@ import getKanakata from './route/katakana.route.js';
 
 const { seedKanji, seedHiragana, seedKanakata } = await import('./Data/initdata.js');
 
+const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174', 'http://127.0.0.1:5173', 'http://127.0.0.1:5174', 'https://kanji-project-d8kv.vercel.app'];
+
 app.use(cors({
-    origin : ['http://localhost:5173', 'https://kanji-project-d8kv.vercel.app'],
-    credentials : true
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error(`Blocked CORS origin: ${origin}`));
+        }
+    },
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
+app.use((req, res, next) => {
+    if (req.method === 'OPTIONS') {
+        const origin = req.headers.origin;
+        if (!origin || allowedOrigins.includes(origin)) {
+            res.setHeader('Access-Control-Allow-Origin', origin || 'http://localhost:5173');
+            res.setHeader('Access-Control-Allow-Credentials', 'true');
+            res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE,OPTIONS');
+            res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+            return res.sendStatus(204);
+        }
+    }
+    return next();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
