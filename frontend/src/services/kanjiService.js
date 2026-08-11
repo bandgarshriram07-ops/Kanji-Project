@@ -119,16 +119,21 @@ export const logOutUser = async () => {
 
 
 export const getKatakana = async () => {
-  try{
-    const res = await fetch(`${API_BASE}/api/katakana`,{
-      method : "GET",
-      credentials : "include"
+  try {
+    const res = await fetch(`${API_BASE}/api/katakana`, {
+      method: "GET",
+      credentials: "include",
     });
-    const data = await res.json();
-    return data;
 
-  }catch(err){
-    console.log(err);
+    if (!res.ok) {
+      throw new Error(`Katakana API request failed with ${res.status}`);
+    }
+
+    const data = await res.json();
+    return Array.isArray(data) ? data : [];
+  } catch (err) {
+    console.error("getKatakana failed:", err);
+    return [];
   }
 };
 

@@ -14,9 +14,16 @@ export  const AuthProvider = ({children}) => {
         method : "GET",
         credentials : "include"
       });
+
+      if (!res.ok) {
+        setUser(null);
+        return;
+      }
+
       const data = await res.json();
-      setUser(data.user);
+      setUser(data?.user ?? null);
       }catch(err){
+        console.error('AuthContext /api/me failed:', err);
         setUser(null);
       };
      }
